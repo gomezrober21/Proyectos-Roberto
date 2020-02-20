@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Bienvenido al chat.</h1>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" id="cajamensaje" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="button" class="btn btn-success" id="botonenviar" value="Enviar" />
+        </div>
+    </div>
+    <div class="row">
+        <ul id="mensajesenchat">
+        </ul>
+    </div>
+</div>
+
+<input type="hidden" id="mostrarnombre" /> 
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+   
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var chat = $.connection.chatHub;
+            chat.client.EnviarMensaje = function (usuario, mensaje) { 
+
+                var divnombre = $("<div/>").text(usuario).html(); 
+                var divmensaje = $("<div/>").text(mensaje).html(); 
+
+                $("#mensajesenchat").append("<li>" + "<b>" + divnombre + "</b>"  + ": " + divmensaje + "</li>");
+            };
+
+            var nombreusuario = prompt("Escribe tu nombre: ", "");
+            $("#mostrarnombre").val(nombreusuario);
+            $("#cajamensaje").focus();
+
+            $.connection.hub.start().done(function () {
+                $("#botonenviar").click(function () {
+
+                    var nombreusuario = $("#mostrarnombre").val();
+                    var mensajeenviar = $("#cajamensaje").val();
+
+                    chat.server.send(nombreusuario, mensajeenviar); 
+
+                    $("#cajamensaje").val("").focus();
+                });
+            });
+        });
+    </script>
+}
