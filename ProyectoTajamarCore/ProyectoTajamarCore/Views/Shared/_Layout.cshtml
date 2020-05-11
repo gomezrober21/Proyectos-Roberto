@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>Rozas fisioterapia</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Bootstrap/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!--
+    Ramayana CSS Template
+    https://templatemo.com/tm-529-ramayana
+    -->
+    <!-- Additional CSS Files -->
+    <link href="~/Bootstrap/assets/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Bootstrap/assets/css/templatemo-style.css" rel="stylesheet" />
+
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+    <link href="~/Bootstrap/assets/css/owl.css" rel="stylesheet" />
+
+    <style>
+        #cajachat {
+            border: 1px solid black;
+            width: 346px;
+            height: 470px;
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            background-color: floralwhite;
+            padding-bottom: 25px;
+           
+           
+        }
+
+        #cajachateo {
+            position: fixed;
+            width: 343px;
+            height: 60px;
+            position: fixed;
+            bottom: 0px;
+            
+        }
+
+        #botonenviar {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            overflow-y: auto;
+        }
+
+        #cabecerachat {
+            width: 345px;
+            height: 80px;
+            background-color: #212529;
+        }
+
+        #botonminimizar {
+            position: fixed;
+            left: auto;
+        }
+
+            #botonminimizar.maximize {
+                background-color: #0F0;
+                /*margin-right:90px;*/
+            }
+    </style>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")"> Rozas Fisioterapia</a>
+                    </div>
+                </header>
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+
+            <div class="inner">
+
+                <!-- Search Box -->
+                <section id="search" class="alt">
+                    <form method="get" action="#">
+                        <input type="text" name="search" id="search" placeholder="Search..." />
+                    </form>
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <ul>
+                        <li><a asp-area="" asp-controller="ConsultaFisio" asp-action="CogerCita">Fisioterapia: Cita Online</a></li>
+                        <li><a asp-area="" asp-controller="Entrenamiento" asp-action="CogerCita">Entrenamiento Personal: Cita Online</a></li>
+                        <li><a asp-area="" asp-controller="Foro" asp-action="Index">Foro</a></li>
+                        @if (User.IsInRole("cliente") || User.IsInRole("administrador"))
+                        {
+                       
+                            <li><a asp-area="" asp-controller="Usuario" asp-action="Perfil">Bienvenida Sr/Sra @User.Identity.Name</a></li>
+                            <partial name="_CerrarSesion" />
+                        }
+                        else
+                        {
+                            <li>
+                                <span class="opener">Perfil</span>
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Manage" asp-action="LogIn">Iniciar Sesión</a></li>
+                                    <li><a asp-area="" asp-controller="Usuario" asp-action="Registrarse">Registrarse</a></li>
+                                    @*<li><a asp-area="" asp-controller="Usuario" asp-action="Perfil">Perfil Usuario</a></li>*@
+
+                                </ul>
+                            </li>
+                        }
+
+                        <li>
+                            <span class="opener">Contacto</span>
+                            <ul>
+                                <li><a href="https://www.instagram.com/gomezro08/?hl=es">Instagram</a></li>
+                                <li><a href="https://twitter.com/gomezRober21">Twitter</a></li>
+                                <li><a href="#">Teléfono: 659044320</a></li>
+
+                            </ul>
+                        </li>
+                        @if (User.IsInRole("administrador"))
+                        {
+                            <li>
+                                <span class="opener">Administración</span>
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Administracion" asp-action="MostrarUsuarios">Usuarios</a></li>
+                                    <li><a asp-area="" asp-controller="AdministracionFisio" asp-action="MostrarCitasFisio">Cons.Fisioterapia</a></li>
+                                    <li><a asp-area="" asp-controller="AdministracionEntr" asp-action="MostrarCitasEntr">Cons.Entrenamiento</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                        @*@if (User.IsInRole("administrador"))
+        {
+            <li><a href="@Url.Action("MostrarUsuariosyCitas", "Administracion")">Administración</a></li>
+        }*@
+                    </ul>
+                </nav>
+                <!-- Featured Posts -->
+                <div class="featured-posts">
+                    <div class="heading">
+                        <h2>Mejores ejercicios funcionales</h2>
+                    </div>
+                    <div class="owl-carousel owl-theme">
+                        <a href="#">
+                            <div class="featured-item">
+                                <img src="~/Bootstrap/assets/images/biceps.jfif" alt="featured one"/>
+                                <p>Biceps: Para ejecutar este ejercicio correctamente, utiliza tensores (como una especie de cuerda), en cambio de mancuernas. Estos tensores sirven para añadir un poco de dificultad al ejercicio, pero aquellos un poco más expertos podéis utilizar mancuernas. En el caso que no tengas tensores, puedes utilizar gomas elásticas en substitución, aunque os resultará más sencillo.</p>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="featured-item">
+
+                                <img src="~/Bootstrap/assets/images/pecho.jpg" alt="featured two" />
+                                <p>Pecho: Press banca. Para iniciar la realización del ejercicio es necesario acostarse en un banco plano con los glúteos, caderas y hombros sobre el banco. Los pies deben apoyarse en suelo, separados un poco más allá del ancho de lo hombros. Con las manos debemos tomar la barra de manera que las palmas miren hacia adelante, es decir, en pronación, y separadas ligeramente más allá de la anchura de los hombros.</p>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="featured-item">
+                                <img src="~/Bootstrap/assets/images/pesomuerto.png" alt="featured three" />
+                                <p>Pierna: El peso muerto es uno de los ejercicios básicos de musculación que todo el mundo debería hacer. Yo soy una firme defensora del peso muerto por los grandes beneficios que supone, y así os lo conté hace tiempo en este artículo. Además de trabajar toda nuestra cadena posterior (sóleos, gemelos, musculatura posterior del muslo -incluyendo los femorales-, glúteos, musculatura del core y erectores espinales) también es un ejercicio muy funcional.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">
+                        Copyright &copy; 2019 Sergio Rozas fisioterapia
+                        <br>Designed by <a rel="nofollow" href="https://www.facebook.com/templatemo">Roberto Gómez</a>
+                    </p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+    @if (User.IsInRole("cliente") || User.IsInRole("administrador"))
+    {
+        <div id="cajachat">
+            <div id="cabecerachat" class="text-center">
+                <div class="row">
+                    <div style="min-width:50px;" class="col-md-2">
+                        <button type="button" class="btn-info" id="botonminimizar">-</button>
+                    </div>
+                    <div id="nombreusuario" style="color:lawngreen; width:100px; height:100px;" class="text-center col-md-6">@User.Identity.Name</div>
+                </div>
+            </div>
+            <div>
+                <ul id="mensajesenchat"></ul>
+            </div>
+            <div id="cajachateo" class="controls form-inline">
+                <input type="text" width="241" size="25" id="cajamensaje" />
+                <input type="button" class="btn btn-success" id="botonenviar" value="Send Message" />
+                <input type="hidden" id="mostrarnombre" />
+            </div>
+        </div>
+    }
+
+
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/Bootstrap/vendor/jquery/jquery.js"></script>
+    <script src="~/Bootstrap/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Bootstrap/assets/js/browser.min.js"></script>
+    <script src="~/Bootstrap/assets/js/breakpoints.min.js"></script>
+    <script src="~/Bootstrap/assets/js/transition.js"></script>
+    <script src="~/Bootstrap/assets/js/owl-carousel.js"></script>
+    <script src="~/Bootstrap/assets/js/custom.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
+    <input type="hidden" id="nombreuser" value="@User.Identity.Name" />
+
+    <script type="text/javascript">
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+        connection.on("ReceiveMessage", function (message) {
+            var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            var encodedMsg = msg;
+            var li = document.createElement("li");
+            li.textContent = encodedMsg;
+            document.getElementById("mensajesenchat").appendChild(li);
+        });
+        connection.start().then(function () {
+            document.getElementById("botonenviar");
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+        document.getElementById("botonenviar").addEventListener("click", function (event) {
+            var nombreuusu = $("#nombreuser").val();
+            var message = nombreuusu + ": " + document.getElementById("cajamensaje").value;
+            $("#cajamensaje").focus();
+            $("#cajamensaje").val("");
+            connection.invoke("SendMessage", message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#botonminimizar").click(function () {
+            $(this).toggleClass('maximize');
+            $("#cajachat").slideToggle();
+        });
+    </script>
+
+    @RenderSection("scripts", false)
+
+
+</body>
+</html>
+

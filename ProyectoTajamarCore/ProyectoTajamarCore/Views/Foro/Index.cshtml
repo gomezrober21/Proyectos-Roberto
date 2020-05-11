@@ -1,0 +1,71 @@
+﻿@using ProyectoTajamarCore.Models
+@model List<Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #cajacomentarios {
+        width: 1400px;
+        height: 1000px;
+    }
+</style>
+
+<h1>Foro preguntas y respuestas</h1>
+
+<form method="post">
+
+    <header>
+        <h2>Si tiene alguna dolencia, escríbalo aquí y el fisio le dará algún consejo para poder recuperarse. </h2>
+       
+    </header>
+
+
+
+    <div>
+        <label class="desc" id="title4" for="Field4">
+            Escribe tu mensaje.
+        </label>
+
+        <div>
+            <textarea id="Field4" name="comentarios" spellcheck="true" rows="10" cols="50" tabindex="4"></textarea>
+        </div>
+    </div>
+
+
+    <div>
+        <div>
+            <input id="saveForm" name="saveForm" type="submit" value="Submit">
+        </div>
+    </div>
+
+    <hr />
+
+    <input type="hidden" id="nombreuser" name="nombreuser" value="@User.Identity.Name" />
+
+</form>
+
+
+<div id="cajacomentarios" style="border:1px solid black;">
+
+    @foreach (var comment in Model)
+    {
+    <ul>
+        @if (comment.Comentarios != null)
+        {
+        <li>
+            @comment.NombreUsuario
+        </li>
+
+        <li>
+            <p> @comment.Comentarios </p>
+        </li>
+        }
+    </ul>
+
+    }
+   
+
+</div>

@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+</style>
+
+@section scripts{
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+}
+
+<!-- Banner -->
+<base href="/" />
+<section class="main-banner">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="banner-caption">
+                                <h4>Bienvenido a tu clínica y gimnasio <em>Online</em></h4>
+                                <span>Soy Sergio Rozas. Fisioterapeuta y entrenador personal</span>
+                                <p>Estudié un doble grado en fisioterapia + CAFYD. Me apasiona el deporte y ayudar a las personas a conseguir sus metas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="resultado"></div>
+
+<!-- Services -->
+<section class="services">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-item first-item">
+                    <div class="icon"></div>
+                    <h4>Crioterapia</h4>
+                    <p>
+                        tratamiento a base de masajes a baja temperatura
+                    </p>
+                    <!-- Button trigger modal-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRelatedContent">
+                        +info
+                    </button>
+                    <!--Modal: modalRelatedContent-->
+                    <div class="modal fade right" id="modalRelatedContent" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+                        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header">
+                                    <p class="heading">Related article</p>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="white-text">&times;</span>
+                                    </button>
+                                </div>
+                                <!--Body-->
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                                <video controls="controls">
+                                                    <source src="~/Videos/La%20crioterapia%20deportiva.mp4" type="video/mp4" />
+                                                </video>
+                                        </div>
+                                        <div class="col-4">
+                                            @*<p><strong>My travel to paradise</strong></p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit [...]</p>
+                                            <button type="button" class="btn btn-info btn-md">Read more</button>*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Content-->
+                        </div>
+                    </div>
+                    <!--Modal: modalRelatedContent-->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item second-item">
+                    <div class="icon"></div>
+                    <h4>estimulación vibratoria</h4>
+                    <p>Masajes a través de altas vibraciones contra tus músculos</p>
+                    <!-- Button trigger modal-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRelatedContent2">
+                        +info
+                    </button>
+                    <!--Modal: modalRelatedContent-->
+                    <div class="modal fade right" id="modalRelatedContent2" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+                        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header">
+                                    <p class="heading">Related article</p>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="white-text">&times;</span>
+                                    </button>
+                                </div>
+                                <!--Body-->
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <video controls="controls">
+                                                <source src="~/Videos/Theragun%20la%20mejor%20herramienta%20de%20automasaje%20para%20profesionales%20y%20deportistas.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                        <div class="col-4">
+                                            @*<p><strong>My travel to paradise</strong></p>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit [...]</p>
+                                            <button type="button" class="btn btn-info btn-md">Read more</button>*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Content-->
+                        </div>
+                    </div>
+                    <!--Modal: modalRelatedContent-->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item third-item">
+                    <div class="icon"></div>
+                    <h4>Punción seca</h4>
+                    <p>Tratamiento con agujas para la movilidad de los músculos.</p>
+                    <!-- Button trigger modal-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRelatedContent3">
+                        +info
+                    </button>
+                    <!--Modal: modalRelatedContent-->
+                    <div class="modal fade right" id="modalRelatedContent3" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+                        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header">
+                                    <p class="heading">Related article</p>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="white-text">&times;</span>
+                                    </button>
+                                </div>
+                                <!--Body-->
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <video controls="controls">
+                                                <source src="~/Videos/puncion%20seca.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                        <div class="col-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Content-->
+                        </div>
+                    </div>
+                    <!--Modal: modalRelatedContent-->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item fourth-item">
+                    <div class="icon"></div>
+                    <h4>Download Free</h4>
+                    <p>We have many free to use CSS web templates on our site for you.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item fivth-item">
+                    <div class="icon"></div>
+                    <h4>Get in touch</h4>
+                    <p>You can get the fastest response from <a rel="nofollow" href="https://www.facebook.com/templatemo">templatemo</a> facebook page.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-item sixth-item">
+                    <div class="icon"></div>
+                    <h4>Spread a word</h4>
+                    <p>Please tell your friends about our website. This is very helpful.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="resultado">
+
+</div>
