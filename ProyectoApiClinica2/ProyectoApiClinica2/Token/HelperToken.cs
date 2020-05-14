@@ -73,7 +73,7 @@ namespace ProyectoApiClinica2.Token
                             // If the request is for our hub...
                             var path = context.HttpContext.Request.Path;
                             if (!string.IsNullOrEmpty(accessToken) &&
-                                (path.StartsWithSegments("/gamehub")))
+                                (path.StartsWithSegments("/chatHub")))
                             {
                                 // Read the token out of the query string
                                 context.Token = accessToken;

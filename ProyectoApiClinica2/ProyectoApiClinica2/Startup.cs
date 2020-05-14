@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProyectoApiClinica2.Data;
+using ProyectoApiClinica2.Hubs;
 using ProyectoApiClinica2.Repositories;
 using ProyectoApiClinica2.Token;
 
@@ -76,6 +77,7 @@ namespace ProyectoApiClinica2
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
