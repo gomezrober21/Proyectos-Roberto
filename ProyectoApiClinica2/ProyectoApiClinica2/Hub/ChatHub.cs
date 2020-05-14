@@ -32,20 +32,20 @@ namespace ProyectoApiClinica2.Hubs
             
             Usuario Reciber = Repository.BuscarUsuario(TargetUsername);
             
-            //Send only if the reciber is admin
+            String JsonSenderObj = this.Context.GetHttpContext().User.Claims.First(c => c.Type == "UserData").Value;
+            Usuario Sender = JsonConvert.DeserializeObject<Usuario>(JsonSenderObj);
+            //Send only if the reciber is admin or if the admin whants to send a message
             //Do not allow comunication between users
-            if (Reciber.Rol == "administrador")
+            if (Reciber.Rol == "administrador" || Sender.Rol == "administrador")
             {
                 String ReciberConnId = User_ConnId_Pair[TargetUsername];
 
                 //Check if the user is connected
                 if (ReciberConnId != null)
                 {
-                    String JsonSenderObj = this.Context.GetHttpContext().User.Claims.First(c => c.Type == "UserData").Value;
-                    Usuario Sender = JsonConvert.DeserializeObject<Usuario>(JsonSenderObj);
 
                     //Send the message and the sender Username to the reciber
-                    await Clients.Client(ReciberConnId).RecibedFrom(message, Sender.NombreUsuario );
+                    await Clients.Client(ReciberConnId).RecibedFrom(message, Sender.NombreUsuario);
 
                 }
 
