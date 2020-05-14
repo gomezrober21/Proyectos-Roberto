@@ -45,7 +45,7 @@ namespace ProyectoApiClinica2.Hubs
                     Usuario Sender = JsonConvert.DeserializeObject<Usuario>(JsonSenderObj);
 
                     //Send the message and the sender Username to the reciber
-                    await Clients.Client(ReciberConnId).SendCoreAsync("RecibedFrom",new object[] { message, Sender.NombreUsuario });
+                    await Clients.Client(ReciberConnId).RecibedFrom(message, Sender.NombreUsuario );
 
                 }
 
