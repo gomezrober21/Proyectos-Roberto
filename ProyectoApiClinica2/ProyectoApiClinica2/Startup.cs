@@ -49,6 +49,8 @@ namespace ProyectoApiClinica2
             HelperToken helper = new HelperToken(this.Configuration);
             services.AddAuthentication(helper.GetAuthOptions()).AddJwtBearer(helper.GetJwtOptions());
             services.AddControllers();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
