@@ -28,6 +28,14 @@ namespace ProyectoApiClinica2.Controllers
             return this.repo.GetUsuarios();
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public ActionResult<List<Usuario>> AdministradoresConnectados()
+        {
+            return this.repo.GetAdministradoresConectados();
+        }
+
+
         //VER PERFIL DEL CLIENTE CONECTADO
         [Authorize]
         [HttpGet]

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProyectoApiClinica2.Data;
+using ProyectoApiClinica2.Hubs;
 using ProyectoApiClinica2.Repositories;
 using ProyectoApiClinica2.Token;
 
@@ -48,6 +49,8 @@ namespace ProyectoApiClinica2
             HelperToken helper = new HelperToken(this.Configuration);
             services.AddAuthentication(helper.GetAuthOptions()).AddJwtBearer(helper.GetJwtOptions());
             services.AddControllers();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +79,7 @@ namespace ProyectoApiClinica2
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

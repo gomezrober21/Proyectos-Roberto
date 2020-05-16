@@ -1,4 +1,5 @@
 ﻿using ProyectoApiClinica2.Data;
+using ProyectoApiClinica2.Hubs;
 using ProyectoApiClinica2.Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,16 @@ namespace ProyectoApiClinica2.Repositories
         {
             var consulta = from datos in context.Usuarios select datos;
             return consulta.ToList();
+        }
+
+
+        //Administradores connectados a signalr
+        public List<Usuario> GetAdministradoresConectados()
+        {
+            List<Usuario> admins = context.Usuarios.Where(u => u.Rol == "administrador").ToList();
+            List<Usuario> connectedAdmins = admins.Where(u => ChatHub.UserConn.ContainsKey(u.NombreUsuario)).ToList();
+
+            return connectedAdmins;
         }
         public Usuario BuscarUsuario(String nombreusu)
         {
