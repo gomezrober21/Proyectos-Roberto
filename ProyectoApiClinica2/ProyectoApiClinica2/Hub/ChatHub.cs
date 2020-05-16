@@ -15,7 +15,10 @@ namespace ProyectoApiClinica2.Hubs
     public class ChatHub: Hub<IChatClient>
     {
         RepositoryClinica Repository;
-        static Dictionary<string, string> User_ConnId_Pair = new Dictionary<string, string>();
+        static Dictionary<string, string> _User_ConnId_Pair = new Dictionary<string, string>();
+
+        public static Dictionary<string, string> UserConn { get => _User_ConnId_Pair; }
+
 
         public ChatHub(RepositoryClinica repository)
         {
@@ -38,7 +41,7 @@ namespace ProyectoApiClinica2.Hubs
             //Do not allow comunication between users
             if (Reciber.Rol == "administrador" || Sender.Rol == "administrador")
             {
-                String ReciberConnId = User_ConnId_Pair[TargetUsername];
+                String ReciberConnId = _User_ConnId_Pair[TargetUsername];
 
                 //Check if the user is connected
                 if (ReciberConnId != null)
@@ -48,21 +51,25 @@ namespace ProyectoApiClinica2.Hubs
                     await Clients.Client(ReciberConnId).RecibedFrom(message, Sender.NombreUsuario);
 
                 }
-
             }
-
         }
-
         public override Task OnConnectedAsync()
         {
             String JsonSenderObj = this.Context.GetHttpContext().User.Claims.First(c => c.Type == "UserData").Value;
             Usuario Sender = JsonConvert.DeserializeObject<Usuario>(JsonSenderObj);
-            User_ConnId_Pair.Add(Sender.NombreUsuario, this.Context.ConnectionId);
-
+            _User_ConnId_Pair.Add(Sender.NombreUsuario, this.Context.ConnectionId);
 
             return base.OnConnectedAsync();
+        }
 
+        public override Task OnDisconnectedAsync(Exception e)
+        {
+            //Remove the user on disconnected
+            _User_ConnId_Pair = _User_ConnId_Pair
+                                .Where(pair => pair.Value != this.Context.ConnectionId)
+                                .ToDictionary(pair => pair.Key,pair => pair.Value);
 
+            return base.OnDisconnectedAsync(e);
         }
     }
 }
