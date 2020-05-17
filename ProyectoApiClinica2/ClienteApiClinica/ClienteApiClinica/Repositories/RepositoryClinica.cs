@@ -105,6 +105,28 @@ namespace ClienteApiClinica.Repositories
             }
         }
 
+        public async Task<List<Usuario>> GetAdministradoresConectados()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String request = "api/usuarios/administradoresconnectados";
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                HttpResponseMessage response = await client.GetAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    List<Usuario> usuario = await response.Content.ReadAsAsync<List<Usuario>>();
+                    return usuario;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public async Task<Usuario> PerfilEmpleado(string token)
         {
             Usuario empleado = await
