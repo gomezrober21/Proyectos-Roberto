@@ -6,10 +6,25 @@
              mc:Ignorable="d"
              x:Class="ClienteApiClinica.Views.Chat.ChatView">
     <ContentPage.Content>
+        
         <StackLayout>
-            <Label Text="Nombre de la persona con la que se esta hablando"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Admin 1"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                FontSize="Large"
+                BackgroundColor="Green"
+                TextColor="White"
+                Padding="20"
+                HorizontalTextAlignment="Center"
+                   />
+            <ScrollView Orientation="Vertical" x:Name="ChatScroll">
+                <StackLayout x:Name="Chat" Padding="10">
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                <Entry x:Name="MessageInput" HorizontalOptions="FillAndExpand"></Entry>
+                <Button x:Name="btnMessageInput"  Text="enviar" HorizontalOptions="End"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
