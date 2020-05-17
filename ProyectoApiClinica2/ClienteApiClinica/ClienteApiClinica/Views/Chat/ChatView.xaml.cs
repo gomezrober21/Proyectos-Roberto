@@ -78,6 +78,14 @@ namespace ClienteApiClinica.Views.Chat
 
             });
 
+            msgRow.Children.Add(new Label()
+            {
+                Text = DateTime.Now.ToString("HH:mm"),
+                FontSize = 10,
+                TextColor = Color.DarkSlateGray,
+                VerticalOptions = LayoutOptions.End
+            });
+
             msgFrame.Content = msgRow;
 
             return msgFrame;
