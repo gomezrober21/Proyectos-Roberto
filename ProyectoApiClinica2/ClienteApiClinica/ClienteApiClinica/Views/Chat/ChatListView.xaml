@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:modelviews="clr-namespace:ClienteApiClinica.VIewModels.Chat"
+             mc:Ignorable="d"
+             x:Class="ClienteApiClinica.Views.Chat.ChatListView">
+    <ContentPage.BindingContext>
+        <modelviews:AdminListViewModel></modelviews:AdminListViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <StackLayout >
+            <Label Text="Administradores"
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand" 
+                FontSize="Large"
+                BackgroundColor="Green"
+                TextColor="White"
+                Padding="20"
+                  HorizontalTextAlignment="Center"
+                   />
+            <StackLayout BackgroundColor="White">
+                <ListView ItemsSource="{Binding AdminsConectados}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                    <StackLayout Orientation="Horizontal"  >
+                                        <Label 
+                                                HorizontalOptions="StartAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            Padding="20,0,0,0"
+                                            FontSize="20"
+                                            Text="{Binding NombreUsuario}"
+                                            ></Label>
+                                        <Button
+                                            Text="Enviar mensaje"
+                                            HorizontalOptions="EndAndExpand"
+                                            BackgroundColor="Green"
+                                            TextColor="White"
+                                            CornerRadius="20"
+                                            Clicked="GoToChat"
+                                            Margin="0,0,10,0"
+                                            BindingContext="{Binding NombreUsuario}"
+                                            ></Button>
+                                    </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:modelviews="clr-namespace:ClienteApiClinica.VIewModels.Chat"
+             xmlns:converters="clr-namespace:ClienteApiClinica.Converters.Chat"
+             mc:Ignorable="d"
+             x:Class="ClienteApiClinica.Views.Chat.ChatView">
+    <ContentPage.BindingContext>
+        <modelviews:ChatModelView></modelviews:ChatModelView>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ChatConverter x:Key="chatconverter"></converters:ChatConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding TargetUserName}"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="FillAndExpand" 
+                FontSize="Large"
+                BackgroundColor="Green"
+                TextColor="White"
+                Padding="20"
+                HorizontalTextAlignment="Center"
+                   />
+            <!--<ScrollView Orientation="Vertical" x:Name="ChatScroll">-->
+                <ListView ItemsSource="{Binding Messages}" VerticalOptions="FillAndExpand" SeparatorVisibility="None" x:Name="chatList">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout >
+                                    <Frame CornerRadius="10" Padding="10,5,10,5" HorizontalOptions="{Binding Path=IsRemote, Converter={StaticResource chatconverter}}"
+                                           BackgroundColor="{Binding Path=IsRemote, Converter={StaticResource chatconverter}, ConverterParameter='BackgroundColor'}">
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="{Binding Message}" VerticalOptions="Center" 
+                                                   TextColor="{Binding Path=IsRemote, Converter={StaticResource chatconverter}, ConverterParameter='TextColor'}"
+                                                   ></Label>
+                                            <Label Text="{Binding TimeStamp, StringFormat='{0:HH:mm}'}" FontSize="10" VerticalOptions="End"
+                                                   TextColor="{Binding Path=IsRemote, Converter={StaticResource chatconverter}, ConverterParameter='TextColor'}"
+                                                   ></Label>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <!--</ScrollView>-->
+            <StackLayout Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                <Entry Text="{Binding MessageEntry , Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Button Command="{Binding AddMessage}" Text="enviar" HorizontalOptions="End"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

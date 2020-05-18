@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ClienteApiClinica.Views.Chat;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace ClienteApiClinica
 {
@@ -10,7 +12,7 @@ namespace ClienteApiClinica
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new ChatListView());
         }
 
         protected override void OnStart()
