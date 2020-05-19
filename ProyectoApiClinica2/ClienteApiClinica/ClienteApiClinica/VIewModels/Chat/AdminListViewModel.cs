@@ -15,12 +15,12 @@ namespace ClienteApiClinica.VIewModels.Chat
 
         private RepositoryClinica RepositoryClinica;
 
-        public AdminListViewModel(RepositoryClinica repositoryClinica)
+        public AdminListViewModel()
         {
             AdminsConectados = new ObservableCollection<Usuario>();
-            RepositoryClinica = repositoryClinica;
+            RepositoryClinica = new RepositoryClinica();
 
-           repositoryClinica.GetAdministradoresConectados().ContinueWith((task)=>
+            RepositoryClinica.GetAdministradoresConectados().ContinueWith((task)=>
             {
                 
                 foreach (Usuario admin in task.Result)
