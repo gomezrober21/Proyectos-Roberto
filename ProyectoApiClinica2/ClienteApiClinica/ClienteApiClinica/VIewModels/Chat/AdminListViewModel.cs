@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 
-namespace ClienteApiClinica.VIewModels.Chat
+namespace ClienteApiClinica.ViewModels.Chat
 {
     class AdminListViewModel: ViewModelBase
     {
