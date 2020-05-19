@@ -5,11 +5,11 @@ using System.Text;
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace ClienteApiClinica.VIewModels
+namespace ClienteApiClinica.ViewModels
 {
 
     //Origen del codigo: https://github.com/dotnet-architecture/eShopOnContainers/blob/dev/src/Mobile/eShopOnContainers/eShopOnContainers.Core/ViewModels/Base/ExtendedBindableObject.cs
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

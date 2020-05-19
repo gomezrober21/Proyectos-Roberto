@@ -1,5 +1,5 @@
 ﻿using ClienteApiClinica.Models;
-using ClienteApiClinica.VIewModels.Chat;
+using ClienteApiClinica.ViewModels.Chat;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
