@@ -1,5 +1,4 @@
-﻿using Android.OS;
-using ClienteApiClinica.Models;
+﻿using ClienteApiClinica.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
