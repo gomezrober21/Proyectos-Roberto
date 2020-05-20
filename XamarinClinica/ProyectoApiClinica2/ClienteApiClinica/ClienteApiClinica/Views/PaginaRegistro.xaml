@@ -25,11 +25,11 @@
         <Entry Text="{Binding NombreUsuario}"  Placeholder="NombreUsuario"/>
         <Entry Text="{Binding Nombre}"  Placeholder="Nombre"/>
         <Entry Text="{Binding Apellido}"  Placeholder="Apellido"/>
-        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}"  Placeholder="Edad"/>
-        <Entry Text="{ Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono"/>
+        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}}"  Placeholder="Edad"/>
+        <Entry Text="{Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono"/>
 
         <Button Command="{Binding ComandoRegistro}" Text="Registrase"/>
 
-        <Label Text="{Binding Mensaje}"/>
+        <Button Text="Ir a Login" Clicked="Button_Clicked"/>
     </StackLayout>
 </ContentPage>
