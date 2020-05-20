@@ -1,5 +1,7 @@
+
 ﻿using ClienteApiClinica.Repositories;
 using System;
+
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Text;
@@ -11,11 +13,13 @@ namespace ClienteApiClinica.ViewModels
 {
  public  class RegistroViewModel: ViewModelBase
     {
+
         RepositoryClinica repo;
        public RegistroViewModel()
         {
             this.repo = new RepositoryClinica();
         }
+
         public String Email { get; set; }
         public String Password { get; set; }       
         public String NombreUsuario { get; set; }
@@ -35,6 +39,7 @@ namespace ClienteApiClinica.ViewModels
 
                     Settings.Username = NombreUsuario;
                     Settings.Password = Password;
+
                         
                 });
             }
