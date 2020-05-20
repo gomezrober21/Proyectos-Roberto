@@ -1,20 +1,21 @@
 ﻿
+using ClienteApiClinica.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClienteApiClinica.Managers
 {
     class SignalRManager
     {
+        Dictionary<String, List<Mensaje>> ListaMensaje;
         HubConnection connection;
         public string Url { get; }
         SignalRManager()
         {
             this.Url = "https://proyectoapiclinica2.azurewebsites.net" + "/chatHub";
-
-
         }
 
         public void StartConnection()
@@ -24,9 +25,17 @@ namespace ClienteApiClinica.Managers
                     options.AccessTokenProvider = () => throw new NotImplementedException("Aqui deberia de ir el token");
                 })
                 .Build();
+            this.connection.StartAsync().ContinueWith((task) => {
+                if (!task.IsFaulted)
+                {
 
-            this.connection.StartAsync();
-
+                }
+                else
+                {
+                    throw new Exception("Could not connect to singalR Server");
+                }
+            });
+                
         }
 
         public void SendMessageTo(string msg, string targetUserName)

@@ -1,5 +1,4 @@
-﻿using FisioXamarin.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Text;
@@ -10,7 +9,6 @@ namespace FisioXamarin.ViewModels
 {
  public  class RegistroViewModel
     {
-        ApiService _apiServices = new ApiService();  
         public String Email { get; set; }
         public String Password { get; set; }       
         public String NombreUsuario { get; set; }
@@ -25,16 +23,16 @@ namespace FisioXamarin.ViewModels
             {
                 return new Command(async ()  =>
                 {
-                  var isSuccess =   _apiServices.RegisterAsync(Email, Password, NombreUsuario, Nombre, Apellido, Edad, Telefono);
-                    if (await isSuccess)
-                    {
-                        Mensaje = "Registro realizado";
-                    }
+                  //var isSuccess =   _apiServices.RegisterAsync(Email, Password, NombreUsuario, Nombre, Apellido, Edad, Telefono);
+                  //  if (await isSuccess)
+                  //  {
+                  //      Mensaje = "Registro realizado";
+                  //  }
 
-                    else
-                    {
-                        Mensaje = "Vuelvelo a intentar";
-                    }
+                  //  else
+                  //  {
+                  //      Mensaje = "Vuelvelo a intentar";
+                  //  }
                         
                 });
             }
