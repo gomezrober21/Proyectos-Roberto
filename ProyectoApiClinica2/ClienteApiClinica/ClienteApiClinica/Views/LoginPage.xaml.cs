@@ -11,16 +11,22 @@ using Xamarin.Forms.Xaml;
 namespace ClienteApiClinica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CitiaFisio : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public CitiaFisio()
+        public LoginPage()
         {
             InitializeComponent();
         }
 
-        private async void Boton_Logout(object sender, EventArgs e)
+        private async void BotonCrearCuennta(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new LoginPage());
+            await Navigation.PushAsync(new PaginaRegistro());
+        }
+
+        private async void Boton_AbrirSesion(object sender, EventArgs e)
+        {
+
+            await Navigation.PopAsync();
         }
     }
 }

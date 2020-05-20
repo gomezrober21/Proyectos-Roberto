@@ -13,19 +13,13 @@ namespace ClienteApiClinica.ViewModels
     {
         public ConsultaFisio Cita { get; set; }
         RepositoryClinica RepositoryClinica;
-        public CitaFisioModelView()
-        {
-            this.RepositoryClinica = new RepositoryClinica();
-            this.Cita = new ConsultaFisio();
-        }
 
         public Command InsertCita
         {
             get
             {
-                return new Command(  () => {
-                    
-                    RepositoryClinica.CogerCitaFisio(
+                return new Command( async () => {
+                  await  RepositoryClinica.CogerCitaFisio(
                         id: Cita.Id,
                         nombre: Cita.Nombre,
                         apellido: Cita.Apellido,
@@ -37,6 +31,16 @@ namespace ClienteApiClinica.ViewModels
             }
         }
 
-        
+        public Command ComandoLogOut
+        {
+            get
+            {
+                return new Command( () => {
+                    Settings.ObtenerToken = "";
+                    Settings.Username = "";
+                    Settings.Password = "";
+                });
+            }
+        }
     }
 }
