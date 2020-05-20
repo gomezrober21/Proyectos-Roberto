@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
+             xmlns:converters="clr-namespace:FisioXamarin.Converters"
+             x:Class="FisioXamarin.Views.PaginaRegistro">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EdadConverter x:Key="converteredad" />
+            <converters:TelefonoConverter x:Key="convertertelefono" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:RegistroViewModel/>
+        
+        
+    </ContentPage.BindingContext>
+    <StackLayout Orientation="Vertical">
+        <Entry Text="{Binding Email}"  Placeholder="Email"/>
+        <Entry Text="{Binding Password}"  Placeholder="Password"/>
+        <Entry Text="{Binding NombreUsuario}"  Placeholder="NombreUsuario"/>
+        <Entry Text="{Binding Nombre}"  Placeholder="Nombre"/>
+        <Entry Text="{Binding Apellido}"  Placeholder="Apellido"/>
+        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}}"  Placeholder="Edad"/>
+        <Entry Text="{Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono"/>
+
+        <Button Command="{Binding ComandoRegistro}" Text="Registrase"/>
+
+        <Button Text="Ir a Login" Clicked="Button_Clicked"/>
+    </StackLayout>
+</ContentPage>

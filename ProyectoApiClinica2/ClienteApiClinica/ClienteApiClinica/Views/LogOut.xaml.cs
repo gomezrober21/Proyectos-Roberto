@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClienteApiClinica.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,10 @@ namespace FisioXamarin.Views
         public LogOut()
         {
             InitializeComponent();
+        }
+        private async void Boton_CerrarSesion(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage());
         }
     }
 }

@@ -10,7 +10,9 @@
         <viewmodels:CitaFisioModelView></viewmodels:CitaFisioModelView>
     </ContentPage.BindingContext>
     
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="LogOut" Command="{Binding ComandoLogOut}" Clicked="Boton_Logout"/>
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <StackLayout>

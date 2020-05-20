@@ -1,5 +1,4 @@
-﻿using FisioXamarin.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace ClienteApiClinica.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CitiaFisio : ContentPage
+    public partial class Administracion : ContentPage
     {
-        public CitiaFisio()
+        public Administracion()
         {
             InitializeComponent();
-        }
-
-        private async void Boton_Logout(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new LoginPage());
         }
     }
 }

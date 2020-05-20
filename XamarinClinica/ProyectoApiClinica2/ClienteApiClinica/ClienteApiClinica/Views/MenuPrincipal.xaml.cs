@@ -1,5 +1,4 @@
-﻿using ClienteApiClinica.Helpers;
-using ClienteApiClinica.VIewModels;
+﻿using ClienteApiClinica.VIewModels;
 using FisioXamarin.Views;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,6 @@ namespace ClienteApiClinica.Views
 
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomePage)));
-            Settings.Navegator = Navigation;
         }
 
         private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)

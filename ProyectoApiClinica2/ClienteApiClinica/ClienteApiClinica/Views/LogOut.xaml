@@ -7,9 +7,10 @@
              x:Class="FisioXamarin.Views.LogOut">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Cerrar Sesión"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Cerrar Sesión" FontSize="40"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Cerrar Sesión" Clicked="Boton_CerrarSesion" Command="{Binding ComandoLogOut}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
