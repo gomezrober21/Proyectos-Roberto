@@ -9,6 +9,9 @@
     <ContentPage.BindingContext>
         <viewmodels:CitaFisioModelView></viewmodels:CitaFisioModelView>
     </ContentPage.BindingContext>
+    
+    
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Introduce tus datos para pedir una cita"

@@ -1,4 +1,5 @@
-﻿using ClienteApiClinica.Models;
+﻿using ClienteApiClinica.Helpers;
+using ClienteApiClinica.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -401,7 +402,12 @@ namespace ClienteApiClinica.Repositories
                     String contenido =
                         await response.Content.ReadAsStringAsync();
                     var jObject = JObject.Parse(contenido);
+                    var TokenExpiracion = jObject.Value<DateTime>(".expires");
+                    Settings.ObtenerExpirarToken = TokenExpiracion;
+                    
                     return jObject.GetValue("response").ToString();
+
+                    
                 }
                 else
                 {

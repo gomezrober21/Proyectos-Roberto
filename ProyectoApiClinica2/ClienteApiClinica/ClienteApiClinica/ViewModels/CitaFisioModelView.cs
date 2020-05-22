@@ -1,4 +1,5 @@
-﻿using ClienteApiClinica.Models;
+﻿using ClienteApiClinica.Helpers;
+using ClienteApiClinica.Models;
 using ClienteApiClinica.Repositories;
 using ClienteApiClinica.ViewModels;
 using System;
@@ -12,12 +13,18 @@ namespace ClienteApiClinica.ViewModels
     {
         public ConsultaFisio Cita { get; set; }
         RepositoryClinica RepositoryClinica;
+        public CitaFisioModelView()
+        {
+            this.RepositoryClinica = new RepositoryClinica();
+            this.Cita = new ConsultaFisio();
+        }
 
         public Command InsertCita
         {
             get
             {
-                return new Command(() => {
+                return new Command(  () => {
+                    
                     RepositoryClinica.CogerCitaFisio(
                         id: Cita.Id,
                         nombre: Cita.Nombre,
@@ -29,5 +36,7 @@ namespace ClienteApiClinica.ViewModels
                 });
             }
         }
+
+        
     }
 }

@@ -1,16 +1,25 @@
-﻿using FisioXamarin.Service;
+
+﻿using ClienteApiClinica.Repositories;
 using System;
+
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using ClienteApiClinica.Helpers;
 
-namespace FisioXamarin.ViewModels
+namespace ClienteApiClinica.ViewModels
 {
- public  class RegistroViewModel
+ public  class RegistroViewModel: ViewModelBase
     {
-        ApiService _apiServices = new ApiService();  
+
+        RepositoryClinica repo;
+       public RegistroViewModel()
+        {
+            this.repo = new RepositoryClinica();
+        }
+
         public String Email { get; set; }
         public String Password { get; set; }       
         public String NombreUsuario { get; set; }
@@ -23,18 +32,14 @@ namespace FisioXamarin.ViewModels
         {
             get
             {
-                return new Command(async ()  =>
+                return new Command( ()  =>
                 {
-                  var isSuccess =   _apiServices.RegisterAsync(Email, Password, NombreUsuario, Nombre, Apellido, Edad, Telefono);
-                    if (await isSuccess)
-                    {
-                        Mensaje = "Registro realizado";
-                    }
+                    
+                    var isSuccess =   this.repo.RegistrarUsuario(NombreUsuario, Password, Nombre, Apellido, Edad, Telefono, Email);
 
-                    else
-                    {
-                        Mensaje = "Vuelvelo a intentar";
-                    }
+                    Settings.Username = NombreUsuario;
+                    Settings.Password = Password;
+
                         
                 });
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClienteApiClinica.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace FisioXamarin.Views
         public PaginaRegistro()
         {
             InitializeComponent();
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage());
         }
     }
 }
