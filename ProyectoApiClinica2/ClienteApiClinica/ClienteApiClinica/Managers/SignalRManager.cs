@@ -4,13 +4,15 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace ClienteApiClinica.Managers
 {
     class SignalRManager
     {
-        Dictionary<String, List<Mensaje>> ListaMensaje;
+        public Dictionary<String, ObservableCollection<Mensaje>> ListaMensaje;
         HubConnection connection;
         public string Url { get; }
         SignalRManager()
@@ -28,14 +30,24 @@ namespace ClienteApiClinica.Managers
             this.connection.StartAsync().ContinueWith((task) => {
                 if (!task.IsFaulted)
                 {
-
+                    Debug.WriteLine("SignalR connection started: OK");
                 }
                 else
                 {
                     throw new Exception("Could not connect to singalR Server");
                 }
             });
-                
+
+            connection.On<string, string>("RecibedFrom", (msg, user) =>
+            {
+                if (!this.ListaMensaje.ContainsKey(user))
+                {
+                    this.ListaMensaje[user] = new ObservableCollection<Mensaje>();
+                }
+
+                this.ListaMensaje[user].Add(new Mensaje() { IsRemote = true, Message = msg, TimeStamp = DateTime.Now });
+
+            });
         }
 
         public void SendMessageTo(string msg, string targetUserName)

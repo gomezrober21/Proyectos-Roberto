@@ -1,4 +1,5 @@
-﻿using ClienteApiClinica.Models;
+﻿using ClienteApiClinica.Managers;
+using ClienteApiClinica.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,27 @@ namespace ClienteApiClinica.ViewModels.Chat
     class ChatModelView:ViewModelBase
     {
 
-        public ObservableCollection<Mensaje> Messages { get; }
+        private SignalRManager chatManager;
+
+        public ChatModelView(SignalRManager chatManager)
+        {
+            this.chatManager = chatManager;
+            //Misma referencia en el chat manager y en el modelview
+            this.Messages = chatManager.ListaMensaje[this.TargetUserName];
+        }
+
+        private ObservableCollection<Mensaje> _messages;
+        public ObservableCollection<Mensaje> Messages {
+            get
+            {
+                return _messages;
+            } 
+            set 
+            {
+                _messages = value;
+                RaisePropertyChanged(() => Messages);
+            }
+        }
 
         public String TargetUserName { 
             get { return this._targetUserName; } 
@@ -30,16 +51,6 @@ namespace ClienteApiClinica.ViewModels.Chat
                 this._messageEntry = value;
                 this.RaisePropertyChanged(() => MessageEntry);
             } 
-        }
-
-        public ChatModelView()
-        {
-            Messages = new ObservableCollection<Mensaje>();
-
-            //Messages.Add(new Mensaje() { Message = "pataat", IsRemote = true, TimeStamp = DateTime.Now });
-            //Messages.Add(new Mensaje() { Message = "patata2", IsRemote = false, TimeStamp = DateTime.Now });
-
-            this.MessageEntry = "";
         }
 
         public Command AddMessage
