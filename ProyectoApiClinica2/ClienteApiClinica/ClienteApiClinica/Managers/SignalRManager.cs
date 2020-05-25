@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace ClienteApiClinica.Managers
 {
     class SignalRManager
     {
-        Dictionary<String, List<Mensaje>> ListaMensaje;
+        Dictionary<String, ObservableCollection<Mensaje>> ListaMensaje;
         HubConnection connection;
         public string Url { get; }
         public SignalRManager()
@@ -35,7 +36,7 @@ namespace ClienteApiClinica.Managers
                     {
                         if (ListaMensaje[user] == null)
                         {
-                            ListaMensaje[user] = new List<Mensaje>();
+                            ListaMensaje[user] = new ObservableCollection<Mensaje>();
                         }
                         ListaMensaje[user]
                             .Add(new Mensaje() 
@@ -69,7 +70,7 @@ namespace ClienteApiClinica.Managers
 
                 if (ListaMensaje[targetUserName] == null)
                 {
-                    ListaMensaje[targetUserName] = new List<Mensaje>();
+                    ListaMensaje[targetUserName] = new ObservableCollection<Mensaje>();
                 }
                 ListaMensaje[targetUserName]
                     .Add(new Mensaje()
