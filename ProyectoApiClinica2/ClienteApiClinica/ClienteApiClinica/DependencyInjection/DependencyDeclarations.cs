@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ClienteApiClinica.Managers;
 using ClienteApiClinica.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace ClienteApiClinica.DependencyInjection
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterType<RepositoryClinica>();
+            builder.RegisterType<SignalRManager>().SingleInstance();
 
             return builder.Build();
 

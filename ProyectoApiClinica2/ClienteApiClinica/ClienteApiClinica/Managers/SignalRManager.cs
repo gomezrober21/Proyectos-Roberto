@@ -12,7 +12,7 @@ namespace ClienteApiClinica.Managers
 {
     class SignalRManager
     {
-        Dictionary<String, ObservableCollection<Mensaje>> ListaMensaje;
+        public Dictionary<String, ObservableCollection<Mensaje>> ListaMensaje;
         HubConnection connection;
         public string Url { get; }
         public SignalRManager()

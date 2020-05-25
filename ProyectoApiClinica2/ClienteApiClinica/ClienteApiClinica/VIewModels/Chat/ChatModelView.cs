@@ -1,4 +1,6 @@
-﻿using ClienteApiClinica.Models;
+﻿using Autofac;
+using ClienteApiClinica.Managers;
+using ClienteApiClinica.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,8 +13,9 @@ namespace ClienteApiClinica.ViewModels.Chat
     {
 
         public ObservableCollection<Mensaje> Messages { get; }
-
-        public String TargetUserName { 
+        private SignalRManager chatManganer;
+        
+            public String TargetUserName { 
             get { return this._targetUserName; } 
             set {
                 this._targetUserName = value;
@@ -34,10 +37,10 @@ namespace ClienteApiClinica.ViewModels.Chat
 
         public ChatModelView()
         {
-            Messages = new ObservableCollection<Mensaje>();
 
-            //Messages.Add(new Mensaje() { Message = "pataat", IsRemote = true, TimeStamp = DateTime.Now });
-            //Messages.Add(new Mensaje() { Message = "patata2", IsRemote = false, TimeStamp = DateTime.Now });
+            chatManganer = App.container.Resolve<SignalRManager>();
+
+            Messages = chatManganer.ListaMensaje[TargetUserName];
 
             this.MessageEntry = "";
         }
@@ -50,14 +53,13 @@ namespace ClienteApiClinica.ViewModels.Chat
                 {
                     if (MessageEntry!="")
                     {
-                        Messages.Add(new Mensaje() { 
-                         TimeStamp = DateTime.Now,
-                         IsRemote = false,
-                         Message = MessageEntry
-                        });
+
+
+                        chatManganer.SendMessageTo(MessageEntry, TargetUserName);
 
                         MessageEntry = "";
 
+                        
                     }
                 });
 

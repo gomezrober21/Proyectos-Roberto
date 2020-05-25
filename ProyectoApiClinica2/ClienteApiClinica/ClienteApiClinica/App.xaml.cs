@@ -11,7 +11,7 @@ namespace ClienteApiClinica
 {
     public partial class App : Application
     {
-        static IContainer container;
+        public static IContainer container { get; set; }
         public App()
         {
             InitializeComponent();
