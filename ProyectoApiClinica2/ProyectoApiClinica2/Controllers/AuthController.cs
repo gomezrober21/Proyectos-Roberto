@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -54,11 +55,18 @@ namespace ProyectoApiClinica2.Controllers
                     SecurityAlgorithms.HmacSha256)
                 );
 
+                String userJson = HttpContext.User.Claims.Single(z => z.Type == "UserData").Value;
+                Usuario user = JsonConvert.DeserializeObject<Usuario>(userJson);
+
                 // Devolvemos el token en la respuesta
                 return Ok(
                     new
                     {
-                        response = new JwtSecurityTokenHandler().WriteToken(token)
+                        response = new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            rol = user.Rol
+                        }
                     }
                 );
             }
