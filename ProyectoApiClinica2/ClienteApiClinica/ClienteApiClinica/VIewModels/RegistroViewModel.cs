@@ -1,5 +1,7 @@
+
 ﻿using ClienteApiClinica.Repositories;
 using System;
+
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Text;
@@ -11,11 +13,13 @@ namespace ClienteApiClinica.ViewModels
 {
  public  class RegistroViewModel: ViewModelBase
     {
+
         RepositoryClinica repo;
        public RegistroViewModel()
         {
             this.repo = new RepositoryClinica();
         }
+
         public String Email { get; set; }
         public String Contrasena { get; set; }       
         public String NombreUsuario { get; set; }
@@ -34,10 +38,8 @@ namespace ClienteApiClinica.ViewModels
                     var insertado =   this.repo.RegistrarUsuario(NombreUsuario, Contrasena, Nombre, Apellido, Edad, Telefono, Email);
 
                     
-                        Mensaje = "Es incorecto";
+                    Mensaje = "Es incorecto";
                     
-                   
-
                     Settings.Username = NombreUsuario;
                     Settings.Password = Contrasena;
 

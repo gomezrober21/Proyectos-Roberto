@@ -6,6 +6,8 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using ClienteApiClinica.Helpers;
+using Autofac;
+using ClienteApiClinica.Managers;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -14,7 +16,7 @@ namespace ClienteApiClinica.VIewModels
         RepositoryClinica repo;
         public LoginViewModel()
         {
-            this.repo = new RepositoryClinica();
+            this.repo = App.container.Resolve<RepositoryClinica>();
             NombreUsuario = Settings.Username;
             Password = Settings.Password;
         }
