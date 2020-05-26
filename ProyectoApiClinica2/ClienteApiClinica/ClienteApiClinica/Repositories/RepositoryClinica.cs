@@ -377,7 +377,7 @@ namespace ClienteApiClinica.Repositories
 
         #region LOGIN
 
-        public async Task<String> GetToken(String usuario, String password) { 
+        public async Task<InformacionDeLogin> GetToken(String usuario, String password) { 
 
             using (HttpClient client = new HttpClient())
             {
@@ -404,10 +404,8 @@ namespace ClienteApiClinica.Repositories
                     var jObject = JObject.Parse(contenido);
                     var TokenExpiracion = jObject.Value<DateTime>(".expires");
                     Settings.ObtenerExpirarToken = TokenExpiracion;
-                    
-                    return jObject.GetValue("response").ToString();
 
-                    
+                    return jObject.Value<InformacionDeLogin>("response");
                 }
                 else
                 {
