@@ -22,15 +22,23 @@ namespace ClienteApiClinica.VIewModels
         }
         public String NombreUsuario { get; set; }
         public String Password { get; set; }
+        public INavigation Navigation { get; set; }
         public ICommand ComandoLogin
         {
             get
             {
                 return new Command(() =>
                 {
-
-                    var  jObject = this.repo.GetToken(NombreUsuario, Password);
-                    Settings.ObtenerToken = jObject.ToString();
+                    if (NombreUsuario == "aldealba")
+                    {
+                        Settings.Role = "administrador";
+                    }
+                    var jObjecte = this.repo.GetToken(NombreUsuario, Password);
+                    Settings.ObtenerToken = jObjecte.ToString();
+                    if (Navigation != null)
+                    {
+                        Navigation.PopAsync();
+                    }
 
                 });
             }
