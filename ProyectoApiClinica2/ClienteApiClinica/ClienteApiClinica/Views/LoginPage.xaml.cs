@@ -1,4 +1,4 @@
-﻿using ClienteApiClinica.Filter;
+﻿
 using ClienteApiClinica.Helpers;
 using ClienteApiClinica.Repositories;
 using ClienteApiClinica.VIewModels;

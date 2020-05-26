@@ -16,7 +16,10 @@ namespace ClienteApiClinica.VIewModels
         RepositoryClinica repo;
         public LoginViewModel()
         {
-            this.repo = App.container.Resolve<RepositoryClinica>();
+            //this.repo = App.container.Resolve<RepositoryClinica>();
+
+            this.repo = new RepositoryClinica();
+
             NombreUsuario = Settings.Username;
             Password = Settings.Password;
         }
@@ -29,7 +32,7 @@ namespace ClienteApiClinica.VIewModels
             {
                 return new Command(() =>
                 {
-                    if (NombreUsuario == "aldealba")
+                    if (NombreUsuario == "adealba")
                     {
                         Settings.Role = "administrador";
                     }

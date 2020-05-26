@@ -1,5 +1,4 @@
-﻿using ClienteApiClinica.Filter;
-using ClienteApiClinica.Helpers;
+﻿using ClienteApiClinica.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
