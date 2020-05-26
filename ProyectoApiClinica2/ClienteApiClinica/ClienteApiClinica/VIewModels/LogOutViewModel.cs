@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ClienteApiClinica.VIewModels
 {
    public class LogOutViewModel
     {
-        public Command ComandoLogOut
+        public ICommand CommandCerrar
         {
             get
             {
@@ -16,6 +17,7 @@ namespace ClienteApiClinica.VIewModels
                     Settings.ObtenerToken = "";
                     Settings.Username = "";
                     Settings.Password = "";
+                    Settings.Role = "";
                 });
             }
         }

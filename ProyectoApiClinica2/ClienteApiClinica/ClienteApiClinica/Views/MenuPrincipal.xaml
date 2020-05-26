@@ -4,9 +4,18 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+                  xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
              x:Class="ClienteApiClinica.Views.MenuPrincipal">
+   
     <MasterDetailPage.Master>
+        
         <ContentPage Title="Menu">
+            <ContentPage.BindingContext>
+                <viewmodel:LogOutViewModel/>
+            </ContentPage.BindingContext>
+            <ContentPage.ToolbarItems>
+                <ToolbarItem Text="logout" Command="{Binding CommandCerrar}" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+            </ContentPage.ToolbarItems>
             <Grid BackgroundColor="BlueViolet">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200" />

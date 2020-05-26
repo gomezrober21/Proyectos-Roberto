@@ -6,6 +6,8 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using ClienteApiClinica.Helpers;
+using Autofac;
+using ClienteApiClinica.Managers;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -14,21 +16,29 @@ namespace ClienteApiClinica.VIewModels
         RepositoryClinica repo;
         public LoginViewModel()
         {
-            this.repo = new RepositoryClinica();
+            this.repo = App.container.Resolve<RepositoryClinica>();
             NombreUsuario = Settings.Username;
             Password = Settings.Password;
         }
         public String NombreUsuario { get; set; }
         public String Password { get; set; }
+        public INavigation Navigation { get; set; }
         public ICommand ComandoLogin
         {
             get
             {
                 return new Command(() =>
                 {
-
-                    var  jObject = this.repo.GetToken(NombreUsuario, Password);
-                    Settings.ObtenerToken = jObject.ToString();
+                    if (NombreUsuario == "aldealba")
+                    {
+                        Settings.Role = "administrador";
+                    }
+                    var jObjecte = this.repo.GetToken(NombreUsuario, Password);
+                    Settings.ObtenerToken = jObjecte.ToString();
+                    if (Navigation != null)
+                    {
+                        Navigation.PopAsync();
+                    }
 
                 });
             }
