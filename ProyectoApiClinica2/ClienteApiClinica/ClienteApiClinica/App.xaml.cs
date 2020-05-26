@@ -1,4 +1,8 @@
-﻿using ClienteApiClinica.Views.Chat;
+﻿using ClienteApiClinica.Helpers;
+using ClienteApiClinica.VIewModels;
+using ClienteApiClinica.Views;
+using ClienteApiClinica.Views.Chat;
+using FisioXamarin.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +16,51 @@ namespace ClienteApiClinica
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ChatListView());
+            //MainPage = new NavigationPage(new MenuPrincipal());
+            InicioTokenPage();
         }
+        private void InicioTokenPage()
+        {
+            if (!string.IsNullOrEmpty(Settings.ObtenerToken))
+            {
+                if (DateTime.UtcNow.AddHours(1) > Settings.ObtenerExpirarToken)
+                {
+                    var viewmodel = new LoginViewModel();
+                    viewmodel.ComandoLogin.Execute(null);
+                    var vm = new LogOutViewModel();
+                    vm.CommandCerrar.Execute(null);
+
+                }
+
+                MainPage = new NavigationPage(new MenuPrincipal());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new MenuPrincipal());
+            }
+        }
+
+        //private void InicioTokenPage()
+        //{
+        //    if (!string.IsNullOrEmpty(Settings.ObtenerToken))
+        //    {
+        //        if (DateTime.UtcNow.AddSeconds(10) > Settings.ObtenerExpirarToken)
+        //        {
+        //            var viewModel = new LoginViewModel();
+        //            viewModel.ComandoLogin.Execute(null);
+        //        }
+
+        //        MainPage = new NavigationPage(new LoginPage());
+        //    }
+        //    else if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
+        //    {
+        //        MainPage = new NavigationPage(new LoginPage());
+        //    }
+        //    else
+        //    {
+        //        MainPage = new NavigationPage(new PaginaRegistro());
+        //    }
+        //}
 
         protected override void OnStart()
         {
