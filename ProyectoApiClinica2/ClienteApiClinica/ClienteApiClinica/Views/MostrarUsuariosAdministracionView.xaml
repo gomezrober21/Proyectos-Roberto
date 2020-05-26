@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
+             mc:Ignorable="d"
+             x:Class="ClienteApiClinica.Views.MostrarUsuariosAdministracionView">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <viewmodel:UsuariosAdministracionViewModel></viewmodel:UsuariosAdministracionViewModel>
+            </StackLayout.BindingContext>
+            <Label Text="Usuarios"
+                VerticalOptions="Start" FontSize="50" TextColor="Black"
+                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Usuarios}" RowHeight="90">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding NombreUsuario}" FontSize="30"></Label>
+                                <Label Text="{Binding Nombre}" FontSize="30"></Label>
+                                <Label Text="{Binding Apellido}" FontSize="30"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
