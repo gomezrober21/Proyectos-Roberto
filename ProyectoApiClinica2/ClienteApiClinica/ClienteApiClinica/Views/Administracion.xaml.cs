@@ -18,13 +18,21 @@ namespace ClienteApiClinica.Views
         public Administracion()
         {
             InitializeComponent();
-           
+
             Debug.WriteLine(Settings.ObtenerToken);
             if (Settings.ObtenerToken == "")
             {
-
                 Navigation.PushAsync(new LoginPage());
             }
         }
+        //protected async override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    if (Settings.ObtenerToken == "")
+        //    {
+        //        Navigation.PushAsync(new LoginPage());
+        //    }
+        //}
+
     }
 }

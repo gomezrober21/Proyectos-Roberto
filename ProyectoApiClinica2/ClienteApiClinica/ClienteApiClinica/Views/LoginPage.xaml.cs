@@ -31,7 +31,7 @@ namespace ClienteApiClinica.Views
             await Navigation.PushAsync(new PaginaRegistro());
         }
 
-        private async void Boton_AbrirSesion(object sender, EventArgs e)
+        private void Boton_AbrirSesion(object sender, EventArgs e)
         {
            
             //if (Settings.Response.Equals(false))

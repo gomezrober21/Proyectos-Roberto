@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using ClienteApiClinica.Helpers;
 using Autofac;
 using ClienteApiClinica.Managers;
+using ClienteApiClinica.Models;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -30,17 +31,22 @@ namespace ClienteApiClinica.VIewModels
         {
             get
             {
-                return new Command(() =>
+                return new Command(async() =>
                 {
-                    if (NombreUsuario == "adealba")
+                   
+                    InformacionDeLogin jObjecte = await this.repo.GetToken(NombreUsuario, Password);
+
+                    if (jObjecte != null)
                     {
-                        Settings.Role = "administrador";
-                    }
-                    var jObjecte = this.repo.GetToken(NombreUsuario, Password);
-                    Settings.ObtenerToken = jObjecte.ToString();
-                    if (Navigation != null)
-                    {
-                        Navigation.PopAsync();
+                        Settings.Role = jObjecte.Rol;
+                        Settings.ObtenerToken = jObjecte.Token;
+                        if (Navigation != null)
+                        {
+
+                            await  Navigation.PopAsync();
+                        }
+
+                        MessagingCenter.Send(this, "EventoLog");
                     }
 
                 });

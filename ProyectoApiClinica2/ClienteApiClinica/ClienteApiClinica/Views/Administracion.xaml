@@ -7,7 +7,7 @@
              x:Class="ClienteApiClinica.Views.Administracion">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="ADMINISTRACIÓN" FontSize="40"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

@@ -19,9 +19,12 @@ namespace ClienteApiClinica.Views
     {
         public static INavigation Navegator { get; set; }
         public List<MasterPageArticulo> listamenu { get; set; }
+        public String Nombre { get; set; }
+      
         public MenuPrincipal()
         {
-            InitializeComponent();
+            InitializeComponent();           
+            
             listamenu = new List<MasterPageArticulo>();
 
 
