@@ -55,18 +55,12 @@ namespace ProyectoApiClinica2.Controllers
                     SecurityAlgorithms.HmacSha256)
                 );
 
-                String userJson = HttpContext.User.Claims.Single(z => z.Type == "UserData").Value;
-                Usuario user = JsonConvert.DeserializeObject<Usuario>(userJson);
-
                 // Devolvemos el token en la respuesta
                 return Ok(
                     new
                     {
-                        response = new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-                            rol = user.Rol
-                        }
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        rol = clientes.Rol
                     }
                 );
             }

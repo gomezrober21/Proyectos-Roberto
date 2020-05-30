@@ -14,7 +14,7 @@
                 <viewmodel:LogOutViewModel/>
             </ContentPage.BindingContext>
             <ContentPage.ToolbarItems>
-                <ToolbarItem Text="logout" Command="{Binding CommandCerrar}" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+                <ToolbarItem Text="{Binding Mensaje}" Command="{Binding CommandCerrar}" Clicked="ToolbarItem_Clicked"></ToolbarItem>
             </ContentPage.ToolbarItems>
             <Grid BackgroundColor="BlueViolet">
                 <Grid.RowDefinitions>

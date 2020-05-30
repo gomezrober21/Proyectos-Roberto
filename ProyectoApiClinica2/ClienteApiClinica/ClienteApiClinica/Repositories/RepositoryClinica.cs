@@ -4,20 +4,24 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace ClienteApiClinica.Repositories
 {
+    
     public class RepositoryClinica
     {
         public String url;
         public MediaTypeWithQualityHeaderValue header;
+       
         public RepositoryClinica()
         {
 
-            this.url = "https://proyectoapiclinica2.azurewebsites.net/";
+            this.url = "https://proyectoapiclinicatajamar.azurewebsites.net/";
             //this.url = "https://localhost:44389/";
             this.header = new MediaTypeWithQualityHeaderValue("application/json");
         }
@@ -403,9 +407,13 @@ namespace ClienteApiClinica.Repositories
                         await response.Content.ReadAsStringAsync();
                     var jObject = JObject.Parse(contenido);
                     var TokenExpiracion = jObject.Value<DateTime>(".expires");
+                    
                     Settings.ObtenerExpirarToken = TokenExpiracion;
 
-                    return jObject.Value<InformacionDeLogin>("response");
+                    //InformacionDeLogin info = (InformacionDeLogin)Convert.ChangeType(jObject, typeof(InformacionDeLogin));
+                    //return jObject.Value<InformacionDeLogin>("response");
+                    return jObject.ToObject<InformacionDeLogin>();
+
                 }
                 else
                 {
