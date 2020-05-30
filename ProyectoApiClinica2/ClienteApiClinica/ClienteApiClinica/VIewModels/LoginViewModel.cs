@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using ClienteApiClinica.Helpers;
 using Autofac;
 using ClienteApiClinica.Managers;
+using ClienteApiClinica.Models;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -16,21 +17,37 @@ namespace ClienteApiClinica.VIewModels
         RepositoryClinica repo;
         public LoginViewModel()
         {
-            this.repo = App.container.Resolve<RepositoryClinica>();
+            //this.repo = App.container.Resolve<RepositoryClinica>();
+
+            this.repo = new RepositoryClinica();
+
             NombreUsuario = Settings.Username;
             Password = Settings.Password;
         }
         public String NombreUsuario { get; set; }
         public String Password { get; set; }
+        public INavigation Navigation { get; set; }
         public ICommand ComandoLogin
         {
             get
             {
-                return new Command(() =>
+                return new Command(async() =>
                 {
+                   
+                    InformacionDeLogin jObjecte = await this.repo.GetToken(NombreUsuario, Password);
 
-                    var  jObject = this.repo.GetToken(NombreUsuario, Password);
-                    Settings.ObtenerToken = jObject.ToString();
+                    if (jObjecte != null)
+                    {
+                        Settings.Role = jObjecte.Rol;
+                        Settings.ObtenerToken = jObjecte.Token;
+                        if (Navigation != null)
+                        {
+
+                            await  Navigation.PopAsync();
+                        }
+
+                        MessagingCenter.Send(this, "EventoLog");
+                    }
 
                 });
             }

@@ -45,26 +45,39 @@ namespace ClienteApiClinica.Helpers
                 AppSettings.AddOrUpdateValue("PASSWORD", value);
             }
         }
-
+        public static string Role
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("ROLE", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("ROLE", value);
+            }
+        }
         public static string ObtenerToken
         {
             get
             {
-                if (!string.IsNullOrEmpty(Settings.ObtenerToken))
-                {
-                    return AppSettings.GetValueOrDefault("TOKEN", "");
-
-                }
-
-                else if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
-                {
-                    Navegator.PushAsync(new LoginPage());
-                }
-                else
-                {
-                    Navegator.PushAsync(new PaginaRegistro());
-                }
-                return null;
+                //if (!string.IsNullOrEmpty(AppSettings.GetValueOrDefault("TOKEN", "")))
+                //{
+                //    if (DateTime.UtcNow.AddHours(1) > Settings.ObtenerExpirarToken)
+                //    {
+                        //var viewmodel = new LoginViewModel();
+                        //viewmodel.ComandoLogin.Execute(null);
+                        return AppSettings.GetValueOrDefault("TOKEN", "");
+                //    }
+                //}
+                //else if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
+                //{
+                //    Navegator.PushAsync(new LoginPage());
+                //}
+                //else
+                //{
+                //    Navegator.PushAsync(new PaginaRegistro());
+                //}
+                //return null;
             }
             set
             {
@@ -76,8 +89,6 @@ namespace ClienteApiClinica.Helpers
             get
             {
 
-               
-
                 return AppSettings.GetValueOrDefault("TOKENEXPIRACION", DateTime.UtcNow);
 
             }
@@ -86,8 +97,8 @@ namespace ClienteApiClinica.Helpers
                 AppSettings.AddOrUpdateValue("TOKENEXPIRACION", value);
             }
         }
-
         
+
     }
 }
 

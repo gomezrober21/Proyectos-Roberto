@@ -21,7 +21,7 @@ namespace ClienteApiClinica.ViewModels
         }
 
         public String Email { get; set; }
-        public String Password { get; set; }       
+        public String Contrasena { get; set; }       
         public String NombreUsuario { get; set; }
         public String Nombre { get; set; }
         public String Apellido { get; set; }
@@ -35,12 +35,14 @@ namespace ClienteApiClinica.ViewModels
                 return new Command( ()  =>
                 {
                     
-                    var isSuccess =   this.repo.RegistrarUsuario(NombreUsuario, Password, Nombre, Apellido, Edad, Telefono, Email);
+                    var insertado =   this.repo.RegistrarUsuario(NombreUsuario, Contrasena, Nombre, Apellido, Edad, Telefono, Email);
 
+                    
+                    Mensaje = "Es incorecto";
+                    
                     Settings.Username = NombreUsuario;
-                    Settings.Password = Password;
+                    Settings.Password = Contrasena;
 
-                        
                 });
             }
         }

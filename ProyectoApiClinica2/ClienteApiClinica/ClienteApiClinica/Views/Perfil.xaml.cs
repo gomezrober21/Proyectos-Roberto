@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClienteApiClinica.Helpers;
+using ClienteApiClinica.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,11 @@ namespace FisioXamarin.Views
         public Perfil()
         {
             InitializeComponent();
+            if (Settings.ObtenerToken == "")
+            {
+
+                Navigation.PushAsync(new LoginPage());
+            }
         }
     }
 }

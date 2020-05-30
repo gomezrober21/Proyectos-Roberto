@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
              xmlns:converters="clr-namespace:FisioXamarin.Converters"
+             xmlns:behaviors="clr-namespace:ClienteApiClinica.Behaviors"
              x:Class="FisioXamarin.Views.PaginaRegistro">
 
     <ContentPage.Resources>
@@ -20,16 +21,20 @@
         
     </ContentPage.BindingContext>
     <StackLayout Orientation="Vertical">
-        <Entry Text="{Binding Email}"  Placeholder="Email"/>
-        <Entry Text="{Binding Password}"  Placeholder="Password"/>
+        <Entry Text="{Binding Email}"  Placeholder="Email">
+            <Entry.Behaviors>
+                <behaviors:EmailValidationBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Text="{Binding Contrasena}"  Placeholder="Password"/>
         <Entry Text="{Binding NombreUsuario}"  Placeholder="NombreUsuario"/>
         <Entry Text="{Binding Nombre}"  Placeholder="Nombre"/>
         <Entry Text="{Binding Apellido}"  Placeholder="Apellido"/>
-        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}"  Placeholder="Edad"/>
-        <Entry Text="{ Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono"/>
+        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}}"  Placeholder="Edad"/>
+        <Entry Text="{Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono"/>
 
         <Button Command="{Binding ComandoRegistro}" Text="Registrase"/>
 
-        <Label Text="{Binding Mensaje}"/>
+        <Button Text="Ir a Login" Clicked="Button_Clicked"/>
     </StackLayout>
 </ContentPage>
