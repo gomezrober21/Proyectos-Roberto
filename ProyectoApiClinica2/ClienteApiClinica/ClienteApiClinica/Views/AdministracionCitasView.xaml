@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundImageSource="fondo.jpg"
+             mc:Ignorable="d"
+             x:Class="ClienteApiClinica.Views.AdministracionCitasView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Elija una opción" TextColor="black" BackgroundColor="LightSalmon" HorizontalOptions="FillAndExpand" FontSize="55"></Label>
+            <Button x:Name="botoncogercitafisio" HorizontalOptions="FillAndExpand" Text="Añadir cita fisio" Clicked="botoncogercitafisio_Clicked"></Button>
+            <Button x:Name="botoncogercitaEntr" HorizontalOptions="FillAndExpand" Text="Añadir cita Entrenamiento" Clicked="botoncogercitaEntr_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

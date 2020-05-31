@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -36,6 +37,18 @@ namespace ClienteApiClinica.VIewModels
         {
             List<Usuario> users = await this.repo.GetUsuarios();
             this.Usuarios = new ObservableCollection<Usuario>(users);
+        }
+
+        public Command EliminarUsuario
+        {
+            get
+            {
+                return new Command(async (nombreusu) =>
+                {
+                    await repo.EliminarUsuario(nombreusu as String);
+                    await Application.Current.MainPage.DisplayAlert("Alerta", "Usuario eliminada", "Ok");
+                });
+            }
         }
     }
 }

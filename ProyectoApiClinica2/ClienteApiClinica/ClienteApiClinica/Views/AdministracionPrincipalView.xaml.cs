@@ -21,27 +21,41 @@ namespace ClienteApiClinica.Views
             this.repo = new RepositoryClinica();
         }
 
-        private async void botonmostrarusuarios_Clicked(object sender, EventArgs e)
+        //private async void botonmostrarusuarios_Clicked(object sender, EventArgs e)
+        //{
+        //    MostrarUsuariosAdministracionView view = new MostrarUsuariosAdministracionView();
+        //    await Navigation.PushModalAsync(view);
+        //}
+
+        //private async void botonmostrarcitafisio_Clicked(object sender, EventArgs e)
+        //{
+        //    AdminCogerCitaFisio view = new AdminCogerCitaFisio();
+        //    await Navigation.PushModalAsync(view);
+        //}
+
+        //private async void botonmostrarEntrPersonal_Clicked(object sender, EventArgs e)
+        //{
+        //    AdminCogerCItaEntr view = new AdminCogerCItaEntr();
+        //    await Navigation.PushModalAsync(view);
+        //}
+
+        //private async void botoneliminarusuario_Clicked(object sender, EventArgs e)
+        //{
+        //    String nombreusuario = this.txtnombreusuario.Text;
+        //    await this.repo.EliminarUsuario(nombreusuario);
+        //    this.lblmensaje.Text = "Usuario eliminado";
+        //}
+
+        private void botoninformacion_Clicked(object sender, EventArgs e)
         {
-            MostrarUsuariosAdministracionView view = new MostrarUsuariosAdministracionView();
-            await Navigation.PushModalAsync(view);
+            AdministracionMostrarInfo view = new AdministracionMostrarInfo();
+            Navigation.PushModalAsync(view);
         }
 
-        private void botonmostrarcitafisio_Clicked(object sender, EventArgs e)
+        private void botoninsertar_Clicked(object sender, EventArgs e)
         {
-
-        }
-
-        private void botonmostrarEntrPersonal_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void botoneliminarusuario_Clicked(object sender, EventArgs e)
-        {
-            String nombreusuario = this.txtnombreusuario.Text;
-            await this.repo.EliminarUsuario(nombreusuario);
-            this.lblmensaje.Text = "Usuario eliminado";
+            AdministracionCitasView view = new AdministracionCitasView();
+            Navigation.PushModalAsync(view);
         }
     }
 }

@@ -12,9 +12,13 @@ namespace ClienteApiClinica.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MostrarUsuariosAdministracionView : ContentPage
     {
+       
+
         public MostrarUsuariosAdministracionView()
         {
             InitializeComponent();
         }
+
+      
     }
 }
