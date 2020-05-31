@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundImageSource="fondo.jpg"
              xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
              mc:Ignorable="d"
              x:Class="ClienteApiClinica.Views.MostrarUsuariosAdministracionView">
@@ -14,14 +15,15 @@
             <Label Text="Usuarios"
                 VerticalOptions="Start" FontSize="50" TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding Usuarios}" RowHeight="90">
+            <ListView ItemsSource="{Binding Usuarios}" RowHeight="150">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding NombreUsuario}" FontSize="30"></Label>
-                                <Label Text="{Binding Nombre}" FontSize="30"></Label>
-                                <Label Text="{Binding Apellido}" FontSize="30"></Label>
+                                <Label Text="{Binding NombreUsuario}" TextColor="Black" FontSize="20"></Label>
+                                <Label Text="{Binding Nombre}" TextColor="Black" FontSize="20"></Label>
+                                <Label Text="{Binding Apellido}" TextColor="Black" FontSize="20"></Label>
+                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding EliminarUsuario}" CommandParameter="{Binding NombreUsuario}" ></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
