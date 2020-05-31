@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using ClienteApiClinica.Helpers;
+using System.ComponentModel;
+using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClienteApiClinica.ViewModels
 {
@@ -19,8 +22,10 @@ namespace ClienteApiClinica.ViewModels
         {
             this.repo = new RepositoryClinica();
         }
-
+       
+      
         public String Email { get; set; }
+        
         public String Contrasena { get; set; }       
         public String NombreUsuario { get; set; }
         public String Nombre { get; set; }
@@ -42,9 +47,20 @@ namespace ClienteApiClinica.ViewModels
                     
                     Settings.Username = NombreUsuario;
                     Settings.Password = Contrasena;
+                    Application.Current.MainPage.DisplayAlert("Alerta", "Usuario Registrado"
+                        , "OK");
 
                 });
             }
+        }
+
+        public bool HasErrors => throw new NotImplementedException();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
