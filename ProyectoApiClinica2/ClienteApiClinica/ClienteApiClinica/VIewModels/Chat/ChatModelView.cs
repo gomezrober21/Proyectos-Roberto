@@ -12,17 +12,41 @@ namespace ClienteApiClinica.ViewModels.Chat
     class ChatModelView:ViewModelBase
     {
 
-        public ObservableCollection<Mensaje> Messages { get; }
+        public ObservableCollection<Mensaje> Messages { 
+            get 
+            {
+                return this._messages;
+            } 
+            set 
+            {
+                this._messages = value;
+                this.RaisePropertyChanged(() => Messages);
+            } 
+        }
+        public ObservableCollection<Mensaje> _messages;
         private SignalRManager chatManganer;
         
             public String TargetUserName { 
             get { return this._targetUserName; } 
             set {
                 this._targetUserName = value;
-                RaisePropertyChanged(() => TargetUserName);    
-                    
+                RaisePropertyChanged(() => TargetUserName);
+
+                chatManganer = App.container.Resolve<SignalRManager>();
+
+                if (chatManganer.ListaMensaje.ContainsKey(TargetUserName))
+                {
+                   
+                    this.Messages = chatManganer.ListaMensaje[TargetUserName];
+                }
+                else
+                {
+                    this.Messages = chatManganer.ListaMensaje[TargetUserName] = new ObservableCollection<Mensaje>();
+                }
+
             } 
         }
+
         private String _targetUserName;
 
         private String _messageEntry  = "";
@@ -37,12 +61,9 @@ namespace ClienteApiClinica.ViewModels.Chat
 
         public ChatModelView()
         {
-
-            chatManganer = App.container.Resolve<SignalRManager>();
-
-            Messages = chatManganer.ListaMensaje[TargetUserName];
-
             this.MessageEntry = "";
+
+            Messages = new ObservableCollection<Mensaje>();
         }
 
         public Command AddMessage
@@ -53,19 +74,12 @@ namespace ClienteApiClinica.ViewModels.Chat
                 {
                     if (MessageEntry!="")
                     {
-
-
                         chatManganer.SendMessageTo(MessageEntry, TargetUserName);
 
                         MessageEntry = "";
-
-                        
                     }
                 });
-
-
             }
         }
-
     }
 }

@@ -20,7 +20,6 @@ namespace ClienteApiClinica.VIewModels
             //this.repo = App.container.Resolve<RepositoryClinica>();
 
             this.repo = new RepositoryClinica();
-
             NombreUsuario = Settings.Username;
             Password = Settings.Password;
         }
@@ -39,16 +38,16 @@ namespace ClienteApiClinica.VIewModels
                     if (jObjecte != null)
                     {
                         Settings.Role = jObjecte.Rol;
+                        Settings.Username = this.NombreUsuario;
                         Settings.ObtenerToken = jObjecte.Token;
+                        App.container.Resolve<SignalRManager>().StartConnection();
+                        MessagingCenter.Send(this, "EventoLog");
+                        
                         if (Navigation != null)
                         {
-
                             await  Navigation.PopAsync();
                         }
-
-                        MessagingCenter.Send(this, "EventoLog");
                     }
-
                 });
             }
         }

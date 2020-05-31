@@ -1,4 +1,5 @@
-﻿using ClienteApiClinica.Repositories;
+﻿using ClienteApiClinica.Helpers;
+using ClienteApiClinica.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace ClienteApiClinica.Views.Chat
         public ChatListView()
         {
             InitializeComponent();
+
+            if (Settings.ObtenerToken == "")
+            {
+                Navigation.PushAsync(new LoginPage());
+            }
+
         }
 
         public void GoToChat(object sender, EventArgs e)
