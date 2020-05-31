@@ -1,4 +1,6 @@
 ﻿
+using Autofac;
+using ClienteApiClinica.Helpers;
 using ClienteApiClinica.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Options;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ClienteApiClinica.Managers
 {
@@ -17,47 +20,47 @@ namespace ClienteApiClinica.Managers
         public string Url { get; }
         public SignalRManager()
         {
-            this.Url = "https://proyectoapiclinica2.azurewebsites.net" + "/chatHub";
+            //this.Url = "https://proyectoapiclinica2.azurewebsites.net" + "/chatHub";
+            //this.Url = "http://localhost:56668" + "/chatHub";
+            this.Url = "https://proyectoapiclinicatajamar.azurewebsites.net" + "/chatHub";
+
+            this.ListaMensaje = new Dictionary<string, ObservableCollection<Mensaje>>();
         }
 
         public async void StartConnection()
         {
             connection = new HubConnectionBuilder()
                 .WithUrl(this.Url, options => {
-                    options.AccessTokenProvider = () => throw new NotImplementedException("Aqui deberia de ir el token");
+                    options.AccessTokenProvider = () => Task.FromResult(Settings.ObtenerToken);
                 })
                 .Build();
-            this.connection.StartAsync().ContinueWith((task) => {
-                if (!task.IsFaulted)
-                {
-                    Debug.WriteLine("SignalR ConnectionStarted");
 
-                    connection.On<string, string>("RecibedFrom", (message,user ) =>
+            await this.connection.StartAsync().ContinueWith((task) => {
+                Debug.WriteLine("SignalR ConnectionStarted");
+
+                connection.On<string, string>("RecibedFrom", (message,user ) =>
+                {
+                    if (!ListaMensaje.ContainsKey(user))
                     {
-                        if (ListaMensaje[user] == null)
-                        {
-                            ListaMensaje[user] = new ObservableCollection<Mensaje>();
-                        }
-                        ListaMensaje[user]
-                            .Add(new Mensaje() 
-                            { 
-                                IsRemote = true,
-                                Message  =message,
-                                TimeStamp = DateTime.Now
-                            });
-                    });
+                        ListaMensaje[user] = new ObservableCollection<Mensaje>();
+                        MessagingCenter.Send(this, "NewChat");
+                    }
+                    ListaMensaje[user]
+                        .Add(new Mensaje() 
+                        { 
+                            IsRemote = true,
+                            Message  =message,
+                            TimeStamp = DateTime.Now
+                        });
 
-                    //Implementacion global sin hacer
-                    //connection.On<string, string>("ReceiveGloval", (message) =>
-                    //{
+                });
 
-                    //});
+                //Implementacion global sin hacer
+                //connection.On<string, string>("ReceiveGloval", (message) =>
+                //{
 
-                }
-                else
-                {
-                    throw new Exception("Could not connect to singalR Server");
-                }
+                //});
+
             });
                 
         }
@@ -80,11 +83,8 @@ namespace ClienteApiClinica.Managers
                         TimeStamp = DateTime.Now
                     });
             }
-            else
-            {
-                throw new Exception("Connection not started. Current state "+ this.connection.State);
-            }
         }
+
 
         //public void SendMessageGlobal(string msg)
         //{

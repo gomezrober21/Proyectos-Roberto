@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
             <Label Text="{Binding TargetUserName}"
                 VerticalOptions="StartAndExpand" 
                 HorizontalOptions="FillAndExpand" 
@@ -31,7 +31,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout >
+                                <StackLayout>
                                     <Frame CornerRadius="10" Padding="10,5,10,5" HorizontalOptions="{Binding Path=IsRemote, Converter={StaticResource chatconverter}}"
                                            BackgroundColor="{Binding Path=IsRemote, Converter={StaticResource chatconverter}, ConverterParameter='BackgroundColor'}">
                                         <StackLayout Orientation="Horizontal" >
