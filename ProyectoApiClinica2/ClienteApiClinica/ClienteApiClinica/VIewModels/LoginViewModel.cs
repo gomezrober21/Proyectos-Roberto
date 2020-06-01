@@ -9,6 +9,9 @@ using ClienteApiClinica.Helpers;
 using Autofac;
 using ClienteApiClinica.Managers;
 using ClienteApiClinica.Models;
+using System.Linq;
+using FisioXamarin.Views;
+using ClienteApiClinica.Views;
 
 namespace ClienteApiClinica.VIewModels
 {
@@ -25,6 +28,7 @@ namespace ClienteApiClinica.VIewModels
         }
         public String NombreUsuario { get; set; }
         public String Password { get; set; }
+        public String MensajeLogin { get; set; }
         public INavigation Navigation { get; set; }
         public ICommand ComandoLogin
         {
@@ -40,13 +44,43 @@ namespace ClienteApiClinica.VIewModels
                         Settings.Role = jObjecte.Rol;
                         Settings.Username = this.NombreUsuario;
                         Settings.ObtenerToken = jObjecte.Token;
-                        App.container.Resolve<SignalRManager>().StartConnection();
+                        App.locator.container.Resolve<SignalRManager>().StartConnection();
+                        await Application.Current.MainPage.DisplayAlert("Alerta", "Usuario Logeado", "Ok");
                         MessagingCenter.Send(this, "EventoLog");
                         
                         if (Navigation != null)
                         {
-                            await  Navigation.PopAsync();
+                            //bool PagRegistro = Navigation.NavigationStack.Any(p => p is PaginaRegistro);
+                            List<Page> lista = Navigation.NavigationStack.ToList();
+                            if (lista.Count>1)
+                            {
+                                Page penultima = lista.ElementAt(lista.Count - 2);
+                                //Navigation.PopToRootAsync();
+                                PaginaRegistro pagina = new PaginaRegistro();
+                                //var item = Navigation.NavigationStack.Count;
+                                //var pl = Navigation.NavigationStack.ElementAt(item - 1);
+                                if (penultima.GetType() == typeof(PaginaRegistro))
+                                {
+                                    await Navigation.PopToRootAsync();
+                                }
+                                else
+                                {
+                                    await Navigation.PopAsync();
+                                }
+                            }
+                            else
+                            {
+                                await Navigation.PopAsync();
+                            }
+
                         }
+                       
+                    }
+                    else
+                    {
+                        
+                        MensajeLogin = "Usuario y Password incorrectos";
+                        RaisePropertyChanged(() => MensajeLogin);
                     }
                 });
             }

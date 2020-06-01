@@ -1,17 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-           
-             x:Class="FisioXamarin.Views.LogOut">
+<ContentPage
+    x:Class="FisioXamarin.Views.LogOut"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewmodel:LogOutViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
+
         <StackLayout>
-            <Label Text="Cerrar Sesión" FontSize="40"
-                VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Cerrar Sesión" Clicked="Boton_CerrarSesion" Command="{Binding ComandoLogOut}"/>
+            <Label
+                FontSize="40"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding Mensaje}"
+                VerticalOptions="Start" />
+            <Button
+                Clicked="Boton_CerrarSesion"
+                Command="{Binding CommandCerrar}"
+                Text="Cerrar Sesión" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

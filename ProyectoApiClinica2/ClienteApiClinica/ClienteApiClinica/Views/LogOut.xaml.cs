@@ -19,7 +19,7 @@ namespace FisioXamarin.Views
         }
         private async void Boton_CerrarSesion(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new LoginPage());
+            
         }
     }
 }

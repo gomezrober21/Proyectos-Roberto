@@ -17,11 +17,11 @@ namespace ClienteApiClinica.Views
         public CitiaFisio()
         {
             InitializeComponent();
-            if (Settings.ObtenerToken == "")
-            {
+            //if (Settings.ObtenerToken == "")
+            //{
 
-                Navigation.PushAsync(new LoginPage());
-            }
+            //    Navigation.PushAsync(new LoginPage());
+            //}
         }
 
         private async void Boton_Logout(object sender, EventArgs e)

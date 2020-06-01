@@ -18,10 +18,10 @@ namespace ClienteApiClinica.Views.Chat
         {
             InitializeComponent();
 
-            if (Settings.ObtenerToken == "")
-            {
-                Navigation.PushAsync(new LoginPage());
-            }
+            //if (Settings.ObtenerToken == "")
+            //{
+            //    Navigation.PushAsync(new LoginPage());
+            //}
 
         }
 

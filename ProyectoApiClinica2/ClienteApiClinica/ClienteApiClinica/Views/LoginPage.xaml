@@ -1,32 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
-             mc:Ignorable="d"
-             x:Class="ClienteApiClinica.Views.LoginPage">
+<ContentPage
+    x:Class="ClienteApiClinica.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:ClienteApiClinica.VIewModels"
+    mc:Ignorable="d">
     <ContentPage.BindingContext>
-        <viewmodel:LoginViewModel/>
+        <viewmodel:LoginViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Login" FontSize="40"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                FontSize="40"
+                HorizontalOptions="CenterAndExpand"
+                Text="Login"
+                VerticalOptions="Center" />
             <StackLayout Orientation="Horizontal">
-                <Label Text="Nombre Usuario: " HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding NombreUsuario}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Nombre Usuario: "
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding NombreUsuario}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Contraseña: " HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Password}" HorizontalOptions="FillAndExpand" IsPassword="True"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Contraseña: "
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsPassword="True"
+                    Text="{Binding Password}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="Title"
+                    Text="{Binding MensajeLogin}"
+                    TextColor="Red" />
+
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Iniciar Sesión" Command="{Binding ComandoLogin}" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Clicked="Boton_AbrirSesion" />
-                
-                <Button Text="Crear Cuenta" Clicked="BotonCrearCuennta"  VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
+                <Button
+                    Clicked="Boton_AbrirSesion"
+                    Command="{Binding ComandoLogin}"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Iniciar Sesión"
+                    VerticalOptions="Start" />
+
+                <Button
+                    Clicked="BotonCrearCuennta"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Crear Cuenta"
+                    VerticalOptions="Start" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

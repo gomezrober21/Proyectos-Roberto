@@ -4,12 +4,38 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:viewmodels="clr-namespace:ClienteApiClinica.VIewModels"
              x:Class="FisioXamarin.Views.Perfil">
+    <ContentPage.BindingContext>
+        <viewmodels:PerfilViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Perfil"
-                VerticalOptions="CenterAndExpand" 
+            <ScrollView Orientation="Vertical">
+                <StackLayout Orientation="Vertical">
+        
+            <Label Text="Perfil Usuario"
+                VerticalOptions="Start" 
+                FontSize="40"
                 HorizontalOptions="CenterAndExpand" />
+            
+            
+            <Label Text="Nombre: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Nombre}" FontSize="30" TextColor="Blue"/>
+            <Label Text="Usuario: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.NombreUsuario}" FontSize="20" TextColor="Blue"/>
+            <Label Text="Apellido: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Apellido}" FontSize="20" TextColor="Blue"/>
+            <Label Text="Edad: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Edad}" FontSize="20" TextColor="Blue"/>
+            <Label Text="Teléfono: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Telefono}" FontSize="20" TextColor="Blue"/>
+            <Label Text="Email: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Email}" FontSize="20" TextColor="Blue"/>
+            <Label Text="Rol: " FontSize="30" TextColor="Black"/>
+            <Label Text="{Binding Usuario.Role}" FontSize="20" TextColor="Blue"/>
+            </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

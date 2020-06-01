@@ -17,11 +17,11 @@ namespace FisioXamarin.Views
         public EntrenamientoPersonal()
         {
             InitializeComponent();
-            if (Settings.ObtenerToken == "")
-            {
+            //if (Settings.ObtenerToken == "")
+            //{
 
-                Navigation.PushAsync(new LoginPage());
-            }
+            //    Navigation.PushAsync(new LoginPage());
+            //}
         }
     }
 }

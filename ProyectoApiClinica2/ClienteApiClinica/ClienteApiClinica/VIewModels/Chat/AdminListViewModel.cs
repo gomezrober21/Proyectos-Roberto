@@ -24,8 +24,8 @@ namespace ClienteApiClinica.ViewModels.Chat
         public AdminListViewModel()
         {
             AdminsConectados = new ObservableCollection<Usuario>();
-            RepositoryClinica = App.container.Resolve<RepositoryClinica>();
-            signalRManager = App.container.Resolve<SignalRManager>();
+            RepositoryClinica = App.locator.container.Resolve<RepositoryClinica>();
+            signalRManager = App.locator.container.Resolve<SignalRManager>();
 
             LoadChatList();
         }

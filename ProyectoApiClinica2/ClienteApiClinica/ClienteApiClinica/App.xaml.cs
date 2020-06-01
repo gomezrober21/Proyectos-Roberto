@@ -9,22 +9,22 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-
+using ClienteApiClinica.DependencyInjection;
 
 namespace ClienteApiClinica
 {
     public partial class App : Application
     {
-        public static IContainer container { get; set; }
+        public static DependencyDeclarations locator { get; set; }
         public App()
         {
             InitializeComponent();
 
+            locator = new DependencyDeclarations();
+            DependencyResolver.ResolveUsing(type => locator.container.IsRegistered(type) ? locator.container.Resolve(type) : null);
+
             //MainPage = new NavigationPage(new MenuPrincipal());
             InicioTokenPage();
-            
-            container = DependencyInjection.DependencyDeclarations.BuildContainer();
-            DependencyResolver.ResolveUsing(type => container.IsRegistered(type) ? container.Resolve(type) : null);
 
             //MainPage = new MenuPrincipal();
 
@@ -37,12 +37,14 @@ namespace ClienteApiClinica
                 {
                     var viewmodel = new LoginViewModel();
                     viewmodel.ComandoLogin.Execute(null);
-                    var vm = new LogOutViewModel();
-                    vm.CommandCerrar.Execute(null);
+                    //var vm = new LogOutViewModel();
+                    //vm.CommandCerrar.Execute(null);
 
                 }
 
                 MainPage = new NavigationPage(new MenuPrincipal());
+
+                MainPage.BindingContext = App.locator.logOutViewModel;
             }
             else
             {

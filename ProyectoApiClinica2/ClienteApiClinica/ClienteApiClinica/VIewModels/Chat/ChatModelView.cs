@@ -32,7 +32,7 @@ namespace ClienteApiClinica.ViewModels.Chat
                 this._targetUserName = value;
                 RaisePropertyChanged(() => TargetUserName);
 
-                chatManganer = App.container.Resolve<SignalRManager>();
+                chatManganer = App.locator.container.Resolve<SignalRManager>();
 
                 if (chatManganer.ListaMensaje.ContainsKey(TargetUserName))
                 {

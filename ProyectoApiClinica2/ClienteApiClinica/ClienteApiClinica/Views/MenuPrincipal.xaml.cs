@@ -31,6 +31,17 @@ namespace ClienteApiClinica.Views
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomePage)));
             Settings.Navegator = Navigation;
+
+            MessagingCenter.Subscribe<LoginViewModel>(this, "EventoLog", (sender) =>
+            {
+                this.ComprobarLogin();
+            });
+
+            MessagingCenter.Subscribe<LogOutViewModel>(this, "EventoLog", (sender) =>
+            {
+                this.ComprobarLogin();
+            });
+
         }
 
         private void ComprobarLogin()
@@ -40,6 +51,7 @@ namespace ClienteApiClinica.Views
             listamenu.Add(new MasterPageArticulo() { Titulo = "Home", Icono = "home.png", TipoObjetivo = typeof(HomePage) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Cerrar Sesión", Icono = "cerrarsesion.png", TipoObjetivo = typeof(LogOut) });
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Login",  TipoObjetivo = typeof(LoginPage) });
 
             if (Settings.ObtenerToken != "")
             {
@@ -47,10 +59,11 @@ namespace ClienteApiClinica.Views
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Perfil", Icono = "perfil.png", TipoObjetivo = typeof(Perfil) });
-                listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", Icono = "cerrarsesion.png", TipoObjetivo = typeof(Administracion) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Chat", TipoObjetivo = typeof(ChatListView) });
-
-
+            }
+            if (Settings.Role == "administrador")
+            {
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", Icono = "cerrarsesion.png", TipoObjetivo = typeof(Administracion) });
             }
 
             this.navigationDrawerList.ItemsSource = listamenu;
@@ -67,6 +80,12 @@ namespace ClienteApiClinica.Views
             Detail = new NavigationPage((Page)Activator.CreateInstance(page));
             IsPresented = false;
         }
+
+        //protected override void OnAppearing()
+        //{
+        //    ComprobarLogin();
+        //    base.OnAppearing();
+        //}
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {

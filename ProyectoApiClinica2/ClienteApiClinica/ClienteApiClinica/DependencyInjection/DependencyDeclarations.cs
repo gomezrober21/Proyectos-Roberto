@@ -1,25 +1,40 @@
 ﻿using Autofac;
 using ClienteApiClinica.Managers;
 using ClienteApiClinica.Repositories;
+using ClienteApiClinica.VIewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ClienteApiClinica.DependencyInjection
 {
-    static class DependencyDeclarations
+    public class DependencyDeclarations
     {
 
-        public static IContainer BuildContainer()
+        public IContainer container;
+
+        public DependencyDeclarations()
+        {
+            this.RegisterDependencies();
+        }
+
+
+        public void RegisterDependencies()
         {
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterType<RepositoryClinica>();
+            builder.RegisterType<LogOutViewModel>();
             builder.RegisterType<SignalRManager>().SingleInstance();
 
-            return builder.Build();
-
+            this.container = builder.Build();
         }
-
+        public LogOutViewModel logOutViewModel
+        {
+            get
+            {
+                return this.container.Resolve<LogOutViewModel>();
+            }
+        }
     }
 }

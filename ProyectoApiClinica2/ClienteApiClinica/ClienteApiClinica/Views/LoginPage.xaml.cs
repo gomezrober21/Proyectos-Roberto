@@ -41,5 +41,15 @@ namespace ClienteApiClinica.Views
             //await Navigation.PushAsync(new MenuPrincipal());
 
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (Settings.ObtenerToken == "") 
+            {
+                return false;
+            }
+            return base.OnBackButtonPressed();
+
+        }
     }
 }
