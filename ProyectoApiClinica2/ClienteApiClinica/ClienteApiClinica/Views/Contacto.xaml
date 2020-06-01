@@ -1,15 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="FisioXamarin.Views.Contacto">
+<ContentPage
+    x:Class="FisioXamarin.Views.Contacto"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:ClienteApiClinica.VIewModels"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <viewmodels:ContactoViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Contacto"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                FontSize="40"
+                HorizontalOptions="CenterAndExpand"
+                Text="Contacto"
+                VerticalOptions="Start" />
+
+            <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            Text="Instagram"
+                            TextColor="Brown"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}" CommandParameter="https://www.instagram.com/gomezro08/?hl=es" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+
+
+            <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            Text="Twitter"
+                            TextColor="Blue"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}" CommandParameter="https://twitter.com/gomezRober21" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
