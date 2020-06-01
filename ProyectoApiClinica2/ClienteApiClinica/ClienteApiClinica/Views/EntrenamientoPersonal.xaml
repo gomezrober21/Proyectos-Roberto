@@ -1,15 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="FisioXamarin.Views.EntrenamientoPersonal">
+<ContentPage
+    x:Class="FisioXamarin.Views.EntrenamientoPersonal"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:ClienteApiClinica.VIewModels"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CitaEntrenamientoViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Entrenamiento Personal"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Introduce tus datos para entrenamiento personal"
+                VerticalOptions="Center" />
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Id"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Id, Mode=TwoWay}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Nombre"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Nombre, Mode=TwoWay}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Apellido"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Apellido, Mode=TwoWay}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Fecha"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Fecha, Mode=TwoWay}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Edad"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Edad, Mode=TwoWay}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Telefono"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding ConsultaEntrenamiento.Telefono, Mode=TwoWay}" />
+            </StackLayout>
+            <Button Command="{Binding CrearEntrenamiento}" Text="Crear Entrenamiento" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

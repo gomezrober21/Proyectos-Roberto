@@ -78,7 +78,7 @@ namespace ClienteApiClinica.UtilitiesValidators
                 return false;
             }
             return Regex.Match(name,
-          @"^[A-Za-z]+([\ A-Za-z]+)*").Success;
+          @"^[a-zA-Z]+(\s[a-zA-Z]+)?$").Success;
             //Any whitespace start or end of the name
             //Got symbols e.g. @
             //Less than 2 or more than 30
@@ -104,7 +104,7 @@ namespace ClienteApiClinica.UtilitiesValidators
                 return false;
             }
             return Regex.Match(lastname,
-          @"^[A-Za-z]+([\ A-Za-z]+)*").Success;
+          @"^[a-zA-Z]+(\s[a-zA-Z]+)?$").Success;
             
         }
 
@@ -116,7 +116,7 @@ namespace ClienteApiClinica.UtilitiesValidators
                 return false;
             }
             return Regex.Match(password,
-          @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$").Success;
+          @" ^ (?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$").Success;
             //1+ number/1+ lowercase/1+ uppercase
            
         }

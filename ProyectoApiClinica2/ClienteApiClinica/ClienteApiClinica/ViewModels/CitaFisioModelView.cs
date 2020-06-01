@@ -33,6 +33,7 @@ namespace ClienteApiClinica.ViewModels
                         edad: Cita.Edad,
                         direccion: Cita.Direccion,
                         telefono: Cita.Telefono);
+                    Application.Current.MainPage.DisplayAlert("Alerta", "Cita Creada", "Ok");
                 });
             }
         }

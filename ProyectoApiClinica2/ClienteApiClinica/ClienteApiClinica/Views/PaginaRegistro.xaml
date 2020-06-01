@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
-             xmlns:converters="clr-namespace:FisioXamarin.Converters"
-             xmlns:behaviors="clr-namespace:ClienteApiClinica.Behaviors"
-             x:Class="FisioXamarin.Views.PaginaRegistro">
+<ContentPage
+    x:Class="FisioXamarin.Views.PaginaRegistro"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:ClienteApiClinica.Behaviors"
+    xmlns:converters="clr-namespace:FisioXamarin.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
+    mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,42 +17,156 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <viewmodels:RegistroViewModel/>
-        
-        
+        <viewmodels:RegistroViewModel />
+
+
     </ContentPage.BindingContext>
     <ScrollView Orientation="Vertical">
-        
-    
-    <StackLayout Orientation="Vertical">
-        <Entry Text="{Binding Email}"  Placeholder="Email" x:Name="Email" TextChanged="Email_TextChanged">
-            <!--<Entry.Behaviors>
+
+
+        <StackLayout Orientation="Vertical">
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Email"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Email"
+                    Placeholder="Email"
+                    Text="{Binding Email}"
+                    TextChanged="Email_TextChanged">
+                    <!--<Entry.Behaviors>
                 <behaviors:EmailValidationBehavior />
-            </Entry.Behaviors>-->         
-        </Entry>
-        <Label x:Name="ErrorEmail" FontSize="Medium" IsVisible="False" TextColor="Red"/>
-        
-        <Entry Text="{Binding Contrasena}"  Placeholder="Password" x:Name="Password" TextChanged="Password_TextChanged"/>
-        <Label x:Name="ErrorPassword" FontSize="Medium" IsVisible="False" TextColor="Red"/>
+            </Entry.Behaviors>-->
+                </Entry>
+                <Label
+                    x:Name="ErrorEmail"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
 
-        <Entry Text="{Binding NombreUsuario}"  Placeholder="NombreUsuario" x:Name="NombreUsuario" TextChanged="NombreUsuario_TextChanged"/>
-        <Label x:Name="ErrorNombreUsuario" FontSize="Medium" IsVisible="False" TextColor="Red"/>
-        
-        <Entry Text="{Binding Nombre}"  Placeholder="Nombre" x:Name="Nombre" TextChanged="Nombre_TextChanged"/>
-        <Label x:Name="ErrorNombre" FontSize="Medium" IsVisible="False" TextColor="Red"/>
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Contraseña"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Password"
+                    Placeholder="Password"
+                    Text="{Binding Contrasena}"
+                    TextChanged="Password_TextChanged" />
 
-        <Entry Text="{Binding Apellido}"  Placeholder="Apellido" x:Name="Apellido" TextChanged="Apellido_TextChanged"/>
-        <Label x:Name="ErrorApellido" FontSize="Medium" IsVisible="False" TextColor="Red"/>
+                <Label
+                    x:Name="ErrorPassword"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Nombre Usuario"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="NombreUsuario"
+                    Placeholder="NombreUsuario"
+                    Text="{Binding NombreUsuario}"
+                    TextChanged="NombreUsuario_TextChanged" />
 
-        <Entry Text="{Binding Edad, Converter={StaticResource converteredad}}"  Placeholder="Edad" x:Name="Edad" TextChanged="Edad_TextChanged"/>
-        <Label x:Name="ErrorEdad" FontSize="Medium" IsVisible="False" TextColor="Red"/>
+                <Label
+                    x:Name="ErrorNombreUsuario"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
 
-        <Entry Text="{Binding Telefono, Converter={StaticResource convertertelefono}}"  Placeholder="Telefono" x:Name="Telefono" TextChanged="Telefono_TextChanged"/>
-        <Label x:Name="ErrorTelefono" FontSize="Medium" IsVisible="False" TextColor="Red"/>
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Nombre"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Nombre"
+                    Placeholder="Nombre"
+                    Text="{Binding Nombre}"
+                    TextChanged="Nombre_TextChanged" />
+                <Label
+                    x:Name="ErrorNombre"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
 
-        <Button Command="{Binding ComandoRegistro}" Text="Registrarse" Clicked="botonValidator_Clicked" IsEnabled="False"   x:Name="BontonRegistrar" />
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Apellido"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Apellido"
+                    Placeholder="Apellido"
+                    Text="{Binding Apellido}"
+                    TextChanged="Apellido_TextChanged" />
+                <Label
+                    x:Name="ErrorApellido"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
 
-        <Button Text="Ir a Login" Clicked="Button_Clicked"/>
-    </StackLayout>
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Edad"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Edad"
+                    Placeholder="Edad"
+                    Text="{Binding Edad, Converter={StaticResource converteredad}}"
+                    TextChanged="Edad_TextChanged" />
+                <Label
+                    x:Name="ErrorEdad"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Telefono"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    x:Name="Telefono"
+                    Placeholder="Telefono"
+                    Text="{Binding Telefono, Converter={StaticResource convertertelefono}}"
+                    TextChanged="Telefono_TextChanged" />
+                <Label
+                    x:Name="ErrorTelefono"
+                    FontSize="Medium"
+                    IsVisible="False"
+                    TextColor="Red" />
+            </StackLayout>
+
+            <StackLayout>
+                <Button
+                    x:Name="BontonRegistrar"
+                    Clicked="botonValidator_Clicked"
+                    Command="{Binding ComandoRegistro}"
+                    IsEnabled="False"
+                    Text="Registrarse" />
+            </StackLayout>
+            <StackLayout>
+                <Button Clicked="Button_Clicked" Text="Ir a Login" />
+            </StackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

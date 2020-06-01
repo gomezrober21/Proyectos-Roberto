@@ -49,7 +49,7 @@ namespace ClienteApiClinica.Views
             listamenu = new List<MasterPageArticulo>();
             
             listamenu.Add(new MasterPageArticulo() { Titulo = "Home", Icono = "home.png", TipoObjetivo = typeof(HomePage) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
+            //listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Cerrar Sesión", Icono = "cerrarsesion.png", TipoObjetivo = typeof(LogOut) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Login",  TipoObjetivo = typeof(LoginPage) });
 
@@ -57,7 +57,7 @@ namespace ClienteApiClinica.Views
             {
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Cita Online", Icono = "cita.png", TipoObjetivo = typeof(CitiaFisio) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });
-                listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
+                //listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Perfil", Icono = "perfil.png", TipoObjetivo = typeof(Perfil) });
                 listamenu.Add(new MasterPageArticulo() { Titulo = "Chat", TipoObjetivo = typeof(ChatListView) });
             }

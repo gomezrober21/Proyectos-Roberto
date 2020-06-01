@@ -28,7 +28,14 @@ namespace ClienteApiClinica.VIewModels
         }
         public String NombreUsuario { get; set; }
         public String Password { get; set; }
-        public String MensajeLogin { get; set; }
+
+        private String _mensajeLogin;
+        public String MensajeLogin
+        {
+            get { return _mensajeLogin; }
+            set { _mensajeLogin = value; RaisePropertyChanged(() => MensajeLogin); }
+        }
+
         public INavigation Navigation { get; set; }
         public ICommand ComandoLogin
         {
@@ -41,6 +48,7 @@ namespace ClienteApiClinica.VIewModels
 
                     if (jObjecte != null)
                     {
+                        MensajeLogin = "";
                         Settings.Role = jObjecte.Rol;
                         Settings.Username = this.NombreUsuario;
                         Settings.ObtenerToken = jObjecte.Token;

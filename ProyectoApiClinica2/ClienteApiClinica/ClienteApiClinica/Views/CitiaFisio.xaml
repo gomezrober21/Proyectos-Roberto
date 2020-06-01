@@ -1,51 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
-             mc:Ignorable="d"
-             x:Class="ClienteApiClinica.Views.CitiaFisio">
+<ContentPage
+    x:Class="ClienteApiClinica.Views.CitiaFisio"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:ClienteApiClinica.ViewModels"
+    mc:Ignorable="d">
     <ContentPage.BindingContext>
-        <viewmodels:CitaFisioModelView></viewmodels:CitaFisioModelView>
+        <viewmodels:CitaFisioModelView />
     </ContentPage.BindingContext>
-    
-    
-    
+
+
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Introduce tus datos para pedir una cita"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Introduce tus datos para pedir una cita"
+                VerticalOptions="Center" />
             <StackLayout Orientation="Horizontal">
-                <Label Text="Id" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Id,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Id"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Id, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Nombre" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Nombre,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Nombre"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Nombre, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Apellido" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Apellido,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Apellido"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Apellido, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Fecha" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Fecha,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Fecha"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Fecha, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Edad" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Edad,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Edad"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Edad, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Direccion" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Direccion,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Direccion"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Direccion, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Telefono" HorizontalOptions="Start" FontSize="20" VerticalTextAlignment="Center"></Label>
-                <Entry Text="{Binding Cita.Telefono,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></Entry>
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    Text="Telefono"
+                    VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Cita.Telefono, Mode=TwoWay}" />
             </StackLayout>
-            <Button Text="Pedir Cita" Command="{Binding InsertCita}"></Button>
+            <Button Command="{Binding InsertCita}" Text="Pedir Cita" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

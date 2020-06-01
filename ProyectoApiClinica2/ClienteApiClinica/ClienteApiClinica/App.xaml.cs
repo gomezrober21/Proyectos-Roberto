@@ -1,4 +1,4 @@
-using ClienteApiClinica.Helpers;
+﻿using ClienteApiClinica.Helpers;
 using ClienteApiClinica.VIewModels;
 using ClienteApiClinica.Views;
 using ClienteApiClinica.Views.Chat;
@@ -42,7 +42,7 @@ namespace ClienteApiClinica
 
                 }
 
-                MainPage = new NavigationPage(new MenuPrincipal());
+                MainPage = new MenuPrincipal();
 
                 MainPage.BindingContext = App.locator.logOutViewModel;
             }

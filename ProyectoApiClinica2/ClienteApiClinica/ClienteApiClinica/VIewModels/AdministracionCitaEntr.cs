@@ -31,6 +31,7 @@ namespace ClienteApiClinica.VIewModels
                         fecha: Cita.Fecha,
                         edad: Cita.Edad,
                         telefono: Cita.Telefono);
+                     Application.Current.MainPage.DisplayAlert("Alerta", "Entrenamiento Creado", "Ok");
                 });
             }
         }
