@@ -24,26 +24,36 @@ namespace ClienteApiClinica.Views
       
         public MenuPrincipal()
         {
-            InitializeComponent();           
-            
-            listamenu = new List<MasterPageArticulo>();
+            InitializeComponent();
+            //MessagingCenter.Send(this, "EventoLog");
 
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Home", Icono = "home.png", TipoObjetivo = typeof(HomePage) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Cita Online", Icono = "cita.png", TipoObjetivo = typeof(CitiaFisio) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Perfil", Icono = "perfil.png", TipoObjetivo = typeof(Perfil) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", TipoObjetivo = typeof(Administracion) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Chat", TipoObjetivo = typeof(ChatListView) });
-
-            //listamenu.Add(new MasterPageArticulo() { Titulo = "Cerrar Sesión", Icono = "cerrarsesion.png", TipoObjetivo = typeof(LogOut) });
-
-            navigationDrawerList.ItemsSource = listamenu;
-
+            ComprobarLogin();
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomePage)));
             Settings.Navegator = Navigation;
+        }
+
+        private void ComprobarLogin()
+        {
+            listamenu = new List<MasterPageArticulo>();
+            
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Home", Icono = "home.png", TipoObjetivo = typeof(HomePage) });
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Cerrar Sesión", Icono = "cerrarsesion.png", TipoObjetivo = typeof(LogOut) });
+
+            if (Settings.ObtenerToken != "")
+            {
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Cita Online", Icono = "cita.png", TipoObjetivo = typeof(CitiaFisio) });
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Perfil", Icono = "perfil.png", TipoObjetivo = typeof(Perfil) });
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", Icono = "cerrarsesion.png", TipoObjetivo = typeof(Administracion) });
+                listamenu.Add(new MasterPageArticulo() { Titulo = "Chat", TipoObjetivo = typeof(ChatListView) });
+
+
+            }
+
+            this.navigationDrawerList.ItemsSource = listamenu;
         }
 
         private void OnMenuItemSelected(object sender, SelectedItemChangedEventArgs e)
