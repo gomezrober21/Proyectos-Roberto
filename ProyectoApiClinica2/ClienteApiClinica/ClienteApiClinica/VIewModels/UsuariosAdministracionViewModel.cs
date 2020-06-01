@@ -47,6 +47,7 @@ namespace ClienteApiClinica.VIewModels
                 {
                     await repo.EliminarUsuario(nombreusu as String);
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Usuario eliminada", "Ok");
+                    this.CargarUsuarios();
                 });
             }
         }

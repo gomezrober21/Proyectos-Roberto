@@ -28,7 +28,6 @@ namespace ClienteApiClinica.Views
             
             listamenu = new List<MasterPageArticulo>();
 
-
             listamenu.Add(new MasterPageArticulo() { Titulo = "Home", Icono = "home.png", TipoObjetivo = typeof(HomePage) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Cita Online", Icono = "cita.png", TipoObjetivo = typeof(CitiaFisio) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });

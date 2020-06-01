@@ -62,6 +62,8 @@ namespace ClienteApiClinica.VIewModels
                 return new Command(async (id) => {
                     await this.repo.EliminarCitaFisio((int)id);
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Cita eliminada", "Ok");
+
+                    this.CargarCitasFisio();
                 });
             }
         }

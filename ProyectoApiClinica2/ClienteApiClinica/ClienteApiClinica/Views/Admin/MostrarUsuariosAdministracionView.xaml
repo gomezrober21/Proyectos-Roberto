@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.BindingContext>
-                <viewmodel:UsuariosAdministracionViewModel></viewmodel:UsuariosAdministracionViewModel>
+                <viewmodel:UsuariosAdministracionViewModel  x:Name="viewmodel"></viewmodel:UsuariosAdministracionViewModel>
             </StackLayout.BindingContext>
             <Label Text="Usuarios"
                 VerticalOptions="Start" FontSize="50" TextColor="Black"
@@ -23,7 +23,7 @@
                                 <Label Text="{Binding NombreUsuario}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Nombre}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Apellido}" TextColor="Black" FontSize="20"></Label>
-                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding EliminarUsuario}" CommandParameter="{Binding NombreUsuario}" ></Button>
+                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding EliminarUsuario,Source={x:Reference viewmodel}}" CommandParameter="{Binding NombreUsuario}" ></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

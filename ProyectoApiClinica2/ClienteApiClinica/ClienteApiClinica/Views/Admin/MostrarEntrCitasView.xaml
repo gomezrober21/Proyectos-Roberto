@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.BindingContext>
-                <viewmodels:VerCitasEntrAdminViewModel></viewmodels:VerCitasEntrAdminViewModel>
+                <viewmodels:VerCitasEntrAdminViewModel x:Name="viewmodel"></viewmodels:VerCitasEntrAdminViewModel>
             </StackLayout.BindingContext>
             <Label Text="Citas Entr.Personal"
                 VerticalOptions="Start" FontSize="40" TextColor="Black"
@@ -23,7 +23,7 @@
                                 <Label Text="{Binding Nombre}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Apellido}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Fecha}" TextColor="Black" FontSize="20"></Label>
-                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding Eliminar}" CommandParameter="{Binding Id}" BackgroundColor="PapayaWhip"></Button>
+                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding Eliminar,Source={x:Reference viewmodel}}" CommandParameter="{Binding Id}" BackgroundColor="PapayaWhip"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

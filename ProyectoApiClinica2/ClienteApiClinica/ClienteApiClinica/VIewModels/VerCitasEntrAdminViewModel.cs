@@ -61,6 +61,7 @@ namespace ClienteApiClinica.VIewModels
                 return new Command(async (id) => {
                     await this.repo.EliminarConsultaEntrPersonal((int)id);
                     await Application.Current.MainPage.DisplayAlert("Alerta", "Cita eliminada", "Ok");
+                    this.CargarCitasEntrenamiento();
                 });
             }
         }
