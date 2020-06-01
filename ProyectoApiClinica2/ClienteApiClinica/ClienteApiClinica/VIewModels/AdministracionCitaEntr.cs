@@ -34,5 +34,7 @@ namespace ClienteApiClinica.VIewModels
                 });
             }
         }
+
+
     }
 }

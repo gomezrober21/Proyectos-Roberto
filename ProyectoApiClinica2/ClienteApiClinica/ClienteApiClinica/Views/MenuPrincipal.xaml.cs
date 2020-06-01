@@ -1,6 +1,7 @@
 ﻿using ClienteApiClinica.Helpers;
 using ClienteApiClinica.ViewModels;
 using ClienteApiClinica.VIewModels;
+using ClienteApiClinica.Views.Chat;
 using FisioXamarin.Views;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,10 @@ namespace ClienteApiClinica.Views
             listamenu.Add(new MasterPageArticulo() { Titulo = "Entrenamiento Personal", Icono = "entrenamiento.png", TipoObjetivo = typeof(EntrenamientoPersonal) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Foro", Icono = "foro.png", TipoObjetivo = typeof(Foro) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Perfil", Icono = "perfil.png", TipoObjetivo = typeof(Perfil) });
-            listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", Icono = "cerrarsesion.png", TipoObjetivo = typeof(Administracion) });
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Administración", TipoObjetivo = typeof(Administracion) });
             listamenu.Add(new MasterPageArticulo() { Titulo = "Contacto", Icono = "contacto.png", TipoObjetivo = typeof(Contacto) });
+            listamenu.Add(new MasterPageArticulo() { Titulo = "Chat", TipoObjetivo = typeof(ChatListView) });
+
             //listamenu.Add(new MasterPageArticulo() { Titulo = "Cerrar Sesión", Icono = "cerrarsesion.png", TipoObjetivo = typeof(LogOut) });
 
             navigationDrawerList.ItemsSource = listamenu;

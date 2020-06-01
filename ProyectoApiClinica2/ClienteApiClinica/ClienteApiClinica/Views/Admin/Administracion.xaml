@@ -6,10 +6,8 @@
              mc:Ignorable="d"
              x:Class="ClienteApiClinica.Views.Administracion">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="ADMINISTRACIÓN" FontSize="40"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="mainViewPort">
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
