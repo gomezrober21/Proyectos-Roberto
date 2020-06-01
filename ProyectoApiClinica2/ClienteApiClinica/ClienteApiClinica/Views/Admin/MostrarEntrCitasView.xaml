@@ -23,7 +23,7 @@
                                 <Label Text="{Binding Nombre}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Apellido}" TextColor="Black" FontSize="20"></Label>
                                 <Label Text="{Binding Fecha}" TextColor="Black" FontSize="20"></Label>
-                                <Button HorizontalOptions="End" BackgroundColor="PapayaWhip" Text="Acciones"></Button>
+                                <Button HorizontalOptions="End" Text="Eliminar" Command="{Binding Eliminar}" CommandParameter="{Binding Id}" BackgroundColor="PapayaWhip"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
