@@ -116,7 +116,7 @@ namespace ClienteApiClinica.UtilitiesValidators
                 return false;
             }
             return Regex.Match(password,
-          @" ^ (?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$").Success;
+          @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$").Success;
             //1+ number/1+ lowercase/1+ uppercase
            
         }
